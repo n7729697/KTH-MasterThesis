@@ -1,0 +1,32 @@
+# Github ignore rules
+
+# https://www.toptal.com/developers/gitignore can generate .gitignore for many filetypes
+
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.pdf
+*.xml
+*.synctex.gz
+*.toc
