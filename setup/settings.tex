@@ -3,6 +3,8 @@
     bibstyle=ieee,
     style=numeric-comp,
     sorting=nty,
+    doi=true, 
+    url=true,
     maxbibnames=99, % Make sure we are printing all authors in the appendix
     ]{biblatex}
     
@@ -32,7 +34,7 @@
 \usepackage[parfill]{parskip}			% New line instead of indent for sections
 \usepackage{tcolorbox}					% Create boxes around content
 \tcbset{colback=white,arc=0mm}
-
+\usepackage{pgfgantt}
 \usepackage{amsmath}
 \usepackage{mathdots}
 \usepackage{yhmath}
@@ -41,7 +43,7 @@
 \usepackage{gensymb}
 \usepackage{amssymb}
 \usepackage{mathtools}              % Add text to math arrows.
-
+\usepackage{float}
 \usepackage{cancel}
 \usepackage{color}
 \usepackage{multirow}
@@ -52,10 +54,14 @@
 \usepackage{fontspec}
 \usepackage{sectsty}
 \usepackage{tocloft}
+\usepackage{fontawesome}
+\usepackage{datetime}
 
 \usepackage[printonlyused]{acronym}
 
-
+\AtEveryBibitem{%
+  \clearfield{note}%
+}
 \counterwithin{figure}{section} 
 \counterwithin{table}{section}
 
