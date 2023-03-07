@@ -11,7 +11,10 @@
 % Makes the last name first in the bibliography.
 % \DeclareNameAlias{author}{last-first}
 \DeclareNameAlias{author}{family-given}
-    
+\AtEveryBibitem{% clear note for bib
+  \clearfield{note}%
+}
+
 % Specify the margins. This is 6.25inches in text with which 
 % can be used to size figures to the correct size.
 \usepackage[a4paper, margin=2.5625cm]{geometry}
@@ -43,7 +46,7 @@
 \usepackage{gensymb}
 \usepackage{amssymb}
 \usepackage{mathtools}              % Add text to math arrows.
-\usepackage{float}
+% \usepackage{float}
 \usepackage{cancel}
 \usepackage{color}
 \usepackage{multirow}
@@ -59,14 +62,11 @@
 
 \usepackage[printonlyused]{acronym}
 
-\AtEveryBibitem{%
-  \clearfield{note}%
-}
 \counterwithin{figure}{section} 
 \counterwithin{table}{section}
 
 % Specifying fonts
-\setmainfont{Georgia} 
+\setmainfont{TEX Gyre Termes} 
 \setsansfont{Arial}
 \newfontfamily\footerfont{Georgia}
 
@@ -96,8 +96,11 @@
 \fancyhf{}
 \fancyhead{}
 \fancyfoot{}
-\fancyhead[L]{\fontsize{11}{10}\selectfont\leftmark}
-\fancyfoot[R]{\footerfont\thepage}
+\fancyhead[OL]{\selectfont\leftmark}
+\fancyhead[OR]{\selectfont\thepage}
+\fancyhead[ER]{\selectfont\rightmark}
+\fancyhead[EL]{\selectfont\thepage}
+% \fancyfoot[R]{\footerfont\thepage}
 \setlength{\headheight}{15.5pt}
 
 
@@ -106,7 +109,7 @@
     \fancyhead{}
     \fancyfoot{}
     \renewcommand{\headrulewidth}{0pt}
-    \fancyfoot[R]{\footerfont\thepage}
+    \fancyfoot[C]{\footerfont\thepage}
 }
 
 \pagestyle{fancy}

@@ -1,5 +1,5 @@
 % !TEX TS-program = xelatex
-\documentclass[12pt, openany]{book}
+\documentclass[12pt,openany]{book}
 
 % This is all the packages and settings and so on.
 % It is using custom fonts that needs to be installed on the computer. If they are not present, they have to be added manually.
@@ -18,10 +18,10 @@
 \author{NIU Xuezhi}
 
 \begin{document}
-\setstretch{1.4}
+\setstretch{1.2}
 
 % The front page of the document
-\pagenumbering{roman}
+\pagenumbering{Roman}
 \include{setup/title-page}
 \include{sections/0-pre-content}
 
@@ -37,11 +37,13 @@
 % \include{content}
 
 \newpage
-\addcontentsline{toc}{chapter}{References}
-\printbibliography
-
+% \addcontentsline{toc}{chapter}{References}
+\pagestyle{plain}
+\setstretch{0.5}
+% \fontsize{5}{0}
+\printbibliography[heading=bibintoc]
 
 \include{sections/appendices}
-\include{back-cover}
+\include{setup/back-cover}
 
 \end{document}
