@@ -2,7 +2,7 @@
 	citestyle=ieee, 
     bibstyle=ieee,
     style=numeric-comp,
-    sorting=nty,
+    sorting=none,
     doi=true, 
     url=true,
     maxbibnames=99, % Make sure we are printing all authors in the appendix
@@ -46,7 +46,7 @@
 \usepackage{gensymb}
 \usepackage{amssymb}
 \usepackage{mathtools}              % Add text to math arrows.
-% \usepackage{float}
+\usepackage{float}
 \usepackage{cancel}
 \usepackage{color}
 \usepackage{multirow}
@@ -59,7 +59,11 @@
 \usepackage{tocloft}
 \usepackage{fontawesome}
 \usepackage{datetime}
+\usepackage{titlesec}
+\usepackage{longtable}
+% \usepackage{smartdiagram}
 
+\usetikzlibrary{chains,shapes.symbols,positioning}
 \usepackage[printonlyused]{acronym}
 
 \counterwithin{figure}{section} 
@@ -107,11 +111,31 @@
 
 \fancypagestyle{plain}{
     \fancyhf{}
-    \fancyhead{}
-    \fancyfoot{}
+    % \fancyheadoffset{1cm}
+    \setlength{\headheight}{0em}
+    % \fancyhead{}
+    % \fancyfoot{}
     \renewcommand{\headrulewidth}{0pt}
     \fancyfoot[C]{\footerfont\thepage}
 }
+\titleformat
+{\chapter} % command
+[display] % shape
+{\normalfont\huge\bfseries} % format
+{\hfill Chapter \ \thechapter} % label
+{-2ex} % sep
+{
+    % \noindent
+    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
+    \rule[.3ex]{\linewidth}{.6pt}
+    % \vspace{-0.5ex}
+} % before-code
+[
+\vspace{-2ex}%
+\rule{\textwidth}{.6pt}
+] % after-code
+
+\titlespacing*{\chapter}{0pt}{0pt}{10pt}
 
 \pagestyle{fancy}
 
