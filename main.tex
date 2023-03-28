@@ -15,8 +15,9 @@
 \title{Optimal Gait Control of Soft Quadruped Robot by Model-based Reinforcement Learning}
 % \newcommand{\subtitle}{TAN Kaige}
 \author{NIU Xuezhi}
-
+\let\tableofcontents\etoctableofcontents
 \begin{document}
+
 \setstretch{1.25}
 
 % The front page of the document
@@ -45,6 +46,61 @@ It should include the following sections (note that this supersedes the instruct
       \item Conclusions and Future Work: Describe the conclusions of your work and give recommendations on how to proceed with the work.
       \item Appendices: Important, but complementary material/results can be placed in appendices. This includes details of any implementation (practical work stages, etc.), large data sets, etc.”
  \end{enumerate}
+\newgeometry{left=0cm,bottom=0cm,right=0cm,top=0cm}
+\begin{figure}[hp]
+\centering
+    \begin{ganttchart}[vgrid, hgrid,
+    bar label font=\footnotesize,
+    group label font=\small\bfseries,
+    today=13,
+    today label=Today,
+    today rule/.style={draw=black!64,
+      dash pattern=on 3.5pt off 4.5pt,
+      line width=1.5pt},
+    milestone inline label node/.append style={left=2ex},
+    inline]{5}{36}
+        \gantttitle{Weeks of 2023}{32} \\
+        \gantttitlelist{5,...,36}{1} \\
+        
+        \ganttgroup[progress=100]{Project setup}{5}{11} \\
+        \ganttbar[inline = false, progress=100]{Literature review}{5}{8} \\
+        \ganttbar[inline = false, progress=100]{Develop thesis proposal}{5}{9} \\
+        \ganttbar[inline = false, progress=100]{Develop research plan}{8}{11} \\
+        
+        \ganttgroup[progress=50]{Model Development}{10}{14} \\
+        \ganttbar[inline = false, progress=100]{Feature extraction}{10}{11} \\
+        \ganttbar[inline = false, progress=70]{Collect data}{11}{13} \\
+        \ganttbar[inline = false, progress=50]{Train surrogate model}{13}{14} \\
+        
+        
+        \ganttgroup[progress=5]{Algorithm Development}{14}{19} \\
+        \ganttbar[inline = false, progress=50]{Implement model}{14}{15} \\
+        \ganttbar[inline = false, progress=10]{Design MBRL algorithm}{15}{17} \\
+        \ganttbar[inline = false, progress=0]{Simulate algorithm}{17}{19} \\
+        
+        \ganttgroup[progress=0]{Experiment \& Validation}{20}{25} \\
+        \ganttbar[inline = false, progress=0]{Test MFRL algorithm}{20}{20} \\
+        \ganttbar[inline = false, progress=0]{Conduct experiments}{21}{23} \\
+        \ganttbar[inline = false, progress=0]{Analyze results}{24}{25} \\
+        
+        \ganttgroup[progress=7, group progress label anchor=south]{Report Writing}{10}{35} \\
+        \ganttbar[inline = false, progress=15]{Writing thesis draft}{10}{26} \\
+        \ganttmilestone{80\% report}{26} \\
+        \ganttbar[inline = false, progress=0, bar progress label anchor=west]{Supervisor review}{27}{34} \\
+        \ganttmilestone{Presentation}{35} \\
+        \ganttbar[inline = false, progress=0, bar progress label anchor=west]{Revise thesis}{34}{35} \\
+        \ganttmilestone{End of thesis}{36} 
+        \ganttlink{elem17}{elem18}
+        \ganttlink{elem18}{elem19}
+        \ganttlink{elem19}{elem20}
+        \ganttlink{elem20}{elem21}
+        \ganttlink{elem21}{elem22}
+    \end{ganttchart}
+    
+    \caption{Gantt chart of this thesis project.}
+    \label{fig:Gantt}
+\end{figure}
+\restoregeometry
 
 %TC:endignore 
 \include{sections/1-introduction}

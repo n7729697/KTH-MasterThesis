@@ -1,3 +1,4 @@
+% \usepackage{sectsty}
 \usepackage[
 	citestyle=ieee, 
     bibstyle=ieee,
@@ -18,13 +19,12 @@
 % Specify the margins. This is 6.25inches in text with which 
 % can be used to size figures to the correct size.
 \usepackage[a4paper, margin=2.5625cm]{geometry}
-
 \usepackage{eso-pic}					% Packages for layout and graphics 
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{fadings}
 \usepackage{setspace}
-% \usepackage{tocloft}		 			% Fixing a bug with page style changes for toc
+% \usepackage{tocloft}		 		    % Fixing a bug with page style changes for toc	
 % \tocloftpagestyle{plain}
 \usepackage{etoc} 						% Separate tocs for appendix and the rest    
 \usepackage{chngcntr}					% Count figures within chapters
@@ -37,30 +37,29 @@
 \usepackage[parfill]{parskip}			% New line instead of indent for sections
 \usepackage{tcolorbox}					% Create boxes around content
 \tcbset{colback=white,arc=0mm}
-\usepackage{pgfgantt}
-\usepackage{amsmath}
-\usepackage{mathdots}
-\usepackage{yhmath}
+\usepackage{pgfgantt}                   % For gantt chart 
+\usepackage{amsmath}                    % For math
+% \usepackage{mathdots}
+% \usepackage{yhmath}
 \usepackage{siunitx}
-\usepackage{array}
-\usepackage{gensymb}
-\usepackage{amssymb}
+% \usepackage{array}
+% \usepackage{gensymb}
+% \usepackage{amssymb}
 \usepackage{mathtools}              % Add text to math arrows.
 \usepackage{float}
-\usepackage{cancel}
+% \usepackage{cancel}
+\usepackage{tocloft}                
 \usepackage{color}
 \usepackage{multirow}
 \usepackage{textcomp}               % Fixing warning for gensyb \perthousand
-\usepackage{svg}                    % including svg files
+% \usepackage{svg}                    % including svg files
 \usepackage{caption}                % For subfigures
 \usepackage{subcaption}
-\usepackage{fontspec}
-\usepackage{sectsty}
-\usepackage{tocloft}
+% \usepackage{fontspec}
 \usepackage{fontawesome}
 \usepackage{datetime}
-\usepackage{titlesec}
-\usepackage{longtable}
+\usepackage{titlesec}               % For title
+\usepackage{longtable}              % For long table
 % \usepackage{smartdiagram}
 
 \usetikzlibrary{chains,shapes.symbols,positioning}
@@ -75,10 +74,16 @@
 \setsansfont{Arial}
 \newfontfamily\footerfont{Georgia}
 
-\chapterfont{\sffamily\fontsize{17}{17}}
-\sectionfont{\sffamily\fontsize{14}{15}}
-\subsectionfont{\sffamily\fontsize{13}{15}}
-\subsubsectionfont{\sffamily\fontsize{12}{15}}
+% \chapterfont{\sffamily\fontsize{17}{17}}
+% \sectionfont{\sffamily\fontsize{14}{15}}
+% \subsectionfont{\sffamily\fontsize{13}{15}}
+% \subsubsectionfont{\sffamily\fontsize{12}{15}}
+% \titleformat{\chapter}[display]
+%   {\normalfont\sffamily\huge\bfseries}
+%   {\chaptertitlename \thechapter}{17pt}{\Huge}
+% \titleformat{\section}
+%   {\normalfont\sffamily\Large\bfseries}
+%   {\thesection}{1em}{}
 
 % Remove the title and make sure that the text is adjusted
 % \usepackage{abstract}
@@ -108,35 +113,19 @@
 % \fancyfoot[R]{\footerfont\thepage}
 \setlength{\headheight}{15.5pt}
 
-
 \fancypagestyle{plain}{
     \fancyhf{}
     % \fancyheadoffset{1cm}
     \setlength{\headheight}{0em}
+    
     % \fancyhead{}
     % \fancyfoot{}
     \renewcommand{\headrulewidth}{0pt}
     \fancyfoot[C]{\footerfont\thepage}
 }
-\titleformat
-{\chapter} % command
-[display] % shape
-{\normalfont\huge\bfseries} % format
-{\hfill Chapter \ \thechapter} % label
-{-2ex} % sep
-{
-    % \noindent
-    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
-    \rule[.3ex]{\linewidth}{.6pt}
-    % \vspace{-0.5ex}
-} % before-code
-[
-\vspace{-2ex}%
-\rule{\textwidth}{.6pt}
-] % after-code
 
 \titlespacing*{\chapter}{0pt}{0pt}{10pt}
-
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
 \pagestyle{fancy}
 
 % Making the command for placing text in random locations
