@@ -1,10 +1,10 @@
 \newpage
-\thispagestyle{plain}
+\thispagestyle{empty}
 ~\\
 \vfill
 { \setstretch{1.1}
 	\subsection*{Authors}
-	NIU Xuezhi { }\href{mailto:xuezhin@kth.se}{\faEnvelope xuezhin@kth.se}\\
+	NIU Xuezhi { }$\langle$\href{mailto:xuezhin@kth.se}{xuezhin@kth.se}$\rangle$\\
     Msc. in Engineering Design - Mechtronics \\
 	KTH Royal Institute of Technology
 	
@@ -25,7 +25,27 @@
 }
 
 
+\titleformat
+{\chapter} % command
+[display] % shape
+{\normalfont\huge\bfseries} % format
+{\hfill Chapter \ \thechapter} % label
+{-2ex} % sep
+{
+    \vspace{-1.2em}
+    \input{tables/Abs_en}
+    \vspace{-1em}
+    % \noindent
+    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
+    \rule[.3ex]{\linewidth}{.6pt}
+    % \vspace{-0.5ex}
+} % before-code
+[
+\vspace{-2ex}%
+\rule{\textwidth}{.6pt}
+] % after-code
 \newpage
+\pagenumbering{Roman}
 \thispagestyle{plain}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  The English abstract          %%
@@ -33,31 +53,46 @@
 \chapter*{Abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Quadruped robots shared advantages of maneuverability in complex terrain without human effort, for instance, they can provide greater absorption capacity, allowing the robot to better withstand impacts and shocks. While rigid robots are known for their fast response and motion accuracy, they may be limited in their motion range due to their rigid mechanical structures, such as joints and electric motors. Recently, advances in sensors, actuators, and computers have made it possible to control soft quadruped robots in real life easily.
+Quadruped robots shared advantages of maneuverability in complex terrain without human effort, for instance, they can provide greater absorption capacity, allowing the robot to better withstand impacts and shocks. While rigid robots are known for their fast response and motion accuracy, they may be limited in their motion range due to their rigid mechanical structures, such as joints and hydraulic actuators. Recently, advances in sensors, actuators, and computers have made it possible to control soft quadruped robots in real life easily.
 
-\vspace{2cm}
+
 Write an abstract. Introduce the subject area for the project and describe the problems that are solved and described in the thesis. Present how the problems have been solved, methods used and present results for the project. Use probably one sentence for each chapter in the final report.
 
 The presentation of the results should be the main part of the abstract. Use about ½ A4-page.
 English abstract
 
-
-
-
+\vspace{2cm}
 \subsection*{Keywords}
-Machine Learning, \ac{MBRL}, Soft Quadruped Robots, Gait Pattern
+Machine Learning, Model-Based Reinforcement Learning(MBRL), Soft Quadruped Robots, Gait Pattern
 
-
-
-
+\titleformat
+{\chapter} % command
+[display] % shape
+{\normalfont\huge\bfseries} % format
+{\hfill Chapter \ \thechapter} % label
+{-2ex} % sep
+{
+    \vspace{-1.2em}
+    \input{tables/Abs_sv}
+    \vspace{-1em}
+    % \noindent
+    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
+    \rule[.3ex]{\linewidth}{.6pt}
+    % \vspace{-0.5ex}
+} % before-code
+[
+\vspace{-2ex}%
+\rule{\textwidth}{.6pt}
+] % after-code
 
 \newpage
 \thispagestyle{plain}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%	 The Swedish abstract         %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Abstract}
+\chapter*{Sammanfattning}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Mjuka fyrbenta robotar har potential att övervinna begränsningarna hos styva robotar i komplexa terrängmiljöer. De kan utnyttja sin större deformationskapacitet för att anpassa sig till stötar och chocker utan mänsklig intervention. Styva robotar, å andra sidan, kan ha hög hastighet och precision, men deras rörelseomfång kan vara begränsat av deras styva mekaniska komponenter, såsom leder och elmotorer. Nya framsteg inom sensorik, ställdonsteknik och beräkning har möjliggjort effektiv styrning av mjuka fyrbenta robotar i realtid.
 
 
@@ -66,11 +101,33 @@ Skriv samma abstract på svenska. Introducera ämnet för projektet och beskriv 
 \subsection*{Nyckelord}
 Maskininlärning, Modellbaserad Förstärkningsinlärning, Mjuka Fyrbenta Robotar, Gångmönster
 
+\titleformat
+{\chapter} % command
+[display] % shape
+{\normalfont\huge\bfseries} % format
+{\hfill Chapter \ \thechapter} % label
+{-2ex} % sep
+{
+    % \noindent
+    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
+    \rule[.3ex]{\linewidth}{.6pt}
+    % \vspace{-0.5ex}
+} % before-code
+[
+\vspace{-2ex}%
+\rule{\textwidth}{.6pt}
+] % after-code
 
 \newpage
 \thispagestyle{plain}
 \chapter*{Acknowledgements}
-Write a short acknowledgements. Don't forget to give some credit to the examiner and supervisor.
+I am deeply grateful for the opportunity to complete this Master's Thesis and would like to acknowledge the support and guidance of several individuals who have contributed to the successful completion of this project.
+
+First and foremost, I would like to extend my sincere thanks to the Mechatronics Department of Machine Design at KTH for their unwavering support throughout the duration of this project. I am particularly indebted to my academic supervisor, Mr. Tan Kaige, for his guidance and unwavering commitment to keeping me on track. Moreover, I would like to express my deep appreciation to the examiner, Prof. Lei Feng, for his interest in my work and for his valuable consultation. Dr. Fredrik Asplund deserves my gratitude for his invaluable guidance and advice regarding the research methodology, which helped shape the initial direction of this thesis work.
+
+In addition, I would like to recognize the contribution of ChatGPT, the language model developed by OpenAI, for its assistance in refining certain written content included in this thesis.
+
+Lastly, I must acknowledge myself, as I am also proud of the dedication, perseverance, and hard work I have put into completing this Master's Thesis.
 
 \vspace{2cm}
 \hfill NIU Xuezhi 
@@ -86,9 +143,9 @@ Write a short acknowledgements. Don't forget to give some credit to the examiner
 \etocdepthtag.toc{mtchapter}
 \etocsettagdepth{mtchapter}{subsection}
 \etocsettagdepth{mtappendix}{none}
-\thispagestyle{plain}
-\tableofcontents
 
+\tableofcontents
+\pagestyle{plain}
 \newpage
 
 

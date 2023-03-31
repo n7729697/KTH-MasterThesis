@@ -1,0 +1,19 @@
+\tikzstyle{chevron}=[shape=signal, draw, signal from=west, signal to=east,
+    align=center, font=\small, minimum height=3em, draw, minimum width=4em, 
+    node distance = 0.5em, inner xsep=1em]
+
+\begin{figure}[hp]
+    \centering
+    \begin{tikzpicture}[auto]
+    \node[chevron, start chain=going right](1){Model design};
+    \node[chevron, right=0.5em of 1, on chain](2){\ac{MBRL} algorithm \\development};
+    \node(3)[chevron, on chain]{Evaluation and \\analysis};
+    \node(4)[chevron, on chain]{Validation};
+    \node[font=\footnotesize, below=0em of 1,text width=4cm]{-Feature extraction\\ -Data collection\\ -Surrogate model training};
+    \node[font=\footnotesize, below=0em of 2,text width=4cm]{-Model implementation\\ -\ac{MBRL} algorithm design\\ -Validate \ac{MBRL} algorithm};
+    \node[font=\footnotesize, below=0em of 3,text width=4cm]{-\ac{MFRL} algorithm test\\ -Experiments\\ -Analysis};
+    \node[font=\footnotesize, below=0em of 4,text width=4cm]{-Validation on real robot\\ -Evaluation of performance};
+    \end{tikzpicture}
+    \caption{Overview of the methods in this thesis}
+    \label{fig:method}
+\end{figure}

@@ -1,30 +1,28 @@
 \makeatletter
 \begin{titlepage}
+    \vspace*{-4\baselineskip}
+    \hspace*{-0.1\textwidth}\includegraphics[width=0.15\paperwidth]{setup/img/kth_logo.eps}
+    \par\vspace*{2.5\baselineskip}
 
-\vspace*{-4.6\baselineskip}
-\hspace*{-0.15\textwidth}\includegraphics[width=0.2\paperwidth]{setup/img/kth-logo.jpg}
-\par\vspace*{2.5\baselineskip}
-
-\PlaceText{65mm}{12mm}{\fontsize{12}{0}\sffamily DEGREE PROJECT IN MECHATRONICS,}
-\PlaceText{65mm}{17mm}{\fontsize{12}{0}\sffamily SECOND CYCLE, 30 CREDITS}
-\PlaceText{65mm}{22mm}{\fontsize{12}{0}\sffamily\itshape STOCKHOLM, SWEDEN \the\year}
-~\\
-
-\makebox[0pt][l]{%
-\begin{minipage}[b]{0.25\textwidth}
-~\\
-\end{minipage}
-\begin{minipage}{0.65\textwidth}
-\begin{flushleft}
-{\fontsize{25}{20}\bf\sffamily\@title\\}
-\vspace{1cm}
-% {\fontsize{19}{17}\bf\sffamily \subtitle\\}
-% \vspace{1cm} 
-{\fontsize{20}{18}\sffamily \@author}\\
-\end{flushleft}
-\end{minipage}
+    \PlaceText{65mm}{12mm}{\fontsize{11}{24}\footerfont\upshape DEGREE PROJECT IN MECHATRONICS,}
+    \PlaceText{65mm}{17mm}{\fontsize{11}{0}\footerfont\upshape SECOND CYCLE, 30 CREDITS}
+    \PlaceText{65mm}{22mm}{\fontsize{11}{10}\footerfont\itshape STOCKHOLM, SWEDEN \the\year}
+    ~\\
+    
+    \makebox[0pt][l]{%
+    \begin{minipage}[b]{0.25\textwidth}
+    ~\\
+    \end{minipage}
+    \begin{minipage}{0.65\textwidth}
+    \begin{flushleft}
+    {\fontsize{25}{20}\bf\sffamily\@title\\}
+    \vspace{1cm}
+    % {\fontsize{19}{17}\bf\sffamily \subtitle\\}
+    % \vspace{1cm} 
+    {\fontsize{20}{18}\sffamily \@author}\\
+    \end{flushleft}
+    \end{minipage}
 }
-
 
 % \hspace*{-3cm}\begin{minipage}[b]{63.5mm}
 % ~\\
@@ -38,16 +36,25 @@
 % {\fontsize{16}{0}\sffamily \@author}\\
 % \end{flushleft}
 % \end{minipage}
+\vspace*{1em}
+\hspace*{-0.2\textwidth}
+\begin{minipage}[t][0.44\paperheight]{\paperwidth}
+        \centering
+        \includegraphics[height=0.435\paperheight]{setup/img/kth_logo.eps}
+\end{minipage}
+% \AddToShipoutPictureFG*{
+    
+% }
 
-
-\AddToShipoutPictureBG*{%]
+\AddToShipoutPictureBG*{%
     \AtPageLowerLeft{%
         \includegraphics[width=1.0\paperwidth]{setup/img/kth-footer.png}
     }%
 }
 
-\PlaceText{70mm}{280mm}{\color{white}\fontsize{12}{0}\sffamily KTH ROYAL INSTITUTE OF TECHNOLOGY }
-\PlaceText{70mm}{285mm}{\color{white}\fontsize{10}{0}\sffamily SCHOOL OF INDUSTRIAL ENGINEERING AND MANAGEMENT}
+
+\PlaceText{70mm}{280mm}{\color{white}\fontsize{11}{0}\footerfont KTH ROYAL INSTITUTE OF TECHNOLOGY}
+\PlaceText{70mm}{285mm}{\color{white}\fontsize{11}{0}\footerfont SCHOOL OF INDUSTRIAL ENGINEERING AND MANAGEMENT}
 \end{titlepage}
 \makeatother
 
