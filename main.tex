@@ -52,7 +52,7 @@ It should include the following sections (note that this supersedes the instruct
     \begin{ganttchart}[vgrid, hgrid,
     bar label font=\footnotesize,
     group label font=\small\bfseries,
-    today=13,
+    today=15,
     today label=Today,
     today rule/.style={draw=black!64,
       dash pattern=on 3.5pt off 4.5pt,
@@ -67,24 +67,24 @@ It should include the following sections (note that this supersedes the instruct
         \ganttbar[inline = false, progress=100]{Develop thesis proposal}{5}{9} \\
         \ganttbar[inline = false, progress=100]{Develop research plan}{8}{11} \\
         
-        \ganttgroup[progress=50]{Model Development}{10}{14} \\
+        \ganttgroup[progress=100]{Model Development}{10}{14} \\
         \ganttbar[inline = false, progress=100]{Feature extraction}{10}{11} \\
-        \ganttbar[inline = false, progress=70]{Collect data}{11}{13} \\
-        \ganttbar[inline = false, progress=50]{Train surrogate model}{13}{14} \\
+        \ganttbar[inline = false, progress=100]{Collect data}{11}{13} \\
+        \ganttbar[inline = false, progress=100]{Train surrogate model}{13}{14} \\
         
         
-        \ganttgroup[progress=5]{Algorithm Development}{14}{19} \\
-        \ganttbar[inline = false, progress=50]{Implement model}{14}{15} \\
-        \ganttbar[inline = false, progress=10]{Design MBRL algorithm}{15}{17} \\
-        \ganttbar[inline = false, progress=0]{Simulate algorithm}{17}{19} \\
+        \ganttgroup[progress=30]{Algorithm Development}{14}{19} \\
+        \ganttbar[inline = false, progress=90]{Implement model}{14}{15} \\
+        \ganttbar[inline = false, progress=50]{Design MBRL algorithm}{15}{17} \\
+        \ganttbar[inline = false, progress=30]{Simulate algorithm}{17}{19} \\
         
         \ganttgroup[progress=0]{Experiment \& Validation}{20}{25} \\
         \ganttbar[inline = false, progress=0]{Test MFRL algorithm}{20}{20} \\
         \ganttbar[inline = false, progress=0]{Conduct experiments}{21}{23} \\
         \ganttbar[inline = false, progress=0]{Analyze results}{24}{25} \\
         
-        \ganttgroup[progress=7, group progress label anchor=south]{Report Writing}{10}{35} \\
-        \ganttbar[inline = false, progress=15]{Writing thesis draft}{10}{26} \\
+        \ganttgroup[progress=20, group progress label anchor=south]{Report Writing}{10}{35} \\
+        \ganttbar[inline = false, progress=30]{Writing thesis draft}{10}{26} \\
         \ganttmilestone{80\% report}{26} \\
         \ganttbar[inline = false, progress=0, bar progress label anchor=west]{Supervisor review}{27}{34} \\
         \ganttmilestone{Presentation}{35} \\

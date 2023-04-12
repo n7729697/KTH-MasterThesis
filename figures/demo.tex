@@ -5,7 +5,7 @@
         \node (policy) [rounded corners, draw] {Policy $\Pi$};
         \node (real_experience) [rounded corners, draw, below of=policy] {Real Experience};
         \node (environment) [rounded corners, draw, right of=real_experience, node distance=6cm] {Environment $s_{t+1}\sim P_\eta(s_{t+1}|s_t, a_t)$};
-        \node (model) [rounded corners, draw, below of=real_experience] {Model $M = (P,R)$};
+        \node (model) [rounded corners, draw, below of=real_experience] {Model \ensuremath{M} = (\ensuremath{P}, \ensuremath{R})};
         \node (simulated_experience) [align=center, text width=2cm, rounded corners, draw, left of=real_experience, node distance=4cm] {Simulated experience};
         
         % Draw arrows
