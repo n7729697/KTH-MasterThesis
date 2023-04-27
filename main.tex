@@ -1,9 +1,10 @@
 % !TEX TS-program = lualatex
 \documentclass[12pt,openany]{book}
-
+%TC:ignore
 % This is all the packages and settings and so on.
 % It is using custom fonts that needs to be installed on the computer. If they are not present, they have to be added manually.
 \input{setup/settings.tex}
+% \AtBeginBibliography{\small}
 
 % Defining files for bibliography
 \addbibresource{references.bib}
@@ -23,7 +24,8 @@
 \pagenumbering{Roman}
 \include{setup/title-page}
 \include{sections/0-pre-content}
-
+%TC:endignore
+\include{requirements}
 \pagenumbering{arabic}
 \include{sections/1-introduction}
 \include{sections/2-background}
@@ -33,15 +35,16 @@
 \include{sections/6-conclusions}
 
 % \include{content}
-
+%TC:ignore
 \newpage
 % \addcontentsline{toc}{chapter}{References}
-\pagestyle{plain}
-\setstretch{0.5}
+% \thispagestyle{plain}
+\setstretch{0.75}
 % \fontsize{5}{0}
+% \setlength\bibitemsep{0pt}
 \printbibliography[heading=bibintoc]
-
+\setstretch{1.25}
 \include{sections/appendices}
 \include{setup/back-cover}
-
+%TC:endignore
 \end{document}
