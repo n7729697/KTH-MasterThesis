@@ -3,16 +3,31 @@
     bibstyle=ieee,
     style=numeric-comp,
     sorting=none,
-    doi=true, 
+    doi=false, 
     url=true,
     maxbibnames=99, % Make sure we are printing all authors in the appendix
     ]{biblatex}
-    
+
 % Makes the last name first in the bibliography.
 % \DeclareNameAlias{author}{last-first}
 \DeclareNameAlias{author}{family-given}
 \AtEveryBibitem{% clear note for bib
+  \clearlist{language}
   \clearfield{note}%
+  % \clearfield{urldate}
+  \ifentrytype{online}{}{\clearfield{url}\clearfield{urlyear}\clearfield{urlmonth}\clearfield{urlday}}%
+}
+% Customize the appearance of the URL field for 'online' entry type
+\DeclareFieldFormat[online]{url}{\mkbibacro{URL}\addcolon\space\url{#1}}
+
+\DefineBibliographyStrings{english}{
+  phdthesis = {Thesis},
+}
+
+% Modify the label for 'online' entry type
+\DeclareLabeldate{%
+  \field{date}\field{year}\field{eventdate}\field{origdate}%
+  \literal{nodate}%
 }
 
 % Specify the margins. This is 6.25inches in text with which 
@@ -54,13 +69,15 @@
 % \usepackage{svg}                    % including svg files
 \usepackage{caption}                % For subfigures
 \usepackage{subcaption}
-% \usepackage{fontspec}
+\usepackage{fontspec}               % For Fonts specification
 \usepackage{fontawesome}
 \usepackage{datetime}
 \usepackage{titlesec}               % For title
 \usepackage{longtable}              % For long table
 % \usepackage{smartdiagram}
 \usepackage{overpic}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{xeCJK}                  % For Chinese
 
 \usetikzlibrary{chains,shapes.symbols,positioning}
 \usepackage[printonlyused]{acronym}
@@ -73,6 +90,10 @@
 % \setmainfont{Georgia} 
 \setsansfont{Arial}
 \newfontfamily\footerfont{Georgia}
+\newfontfamily\colvillebold{ColvilleBold}[
+    Path = {setup/font/}, % Change this path if you uploaded the font file to a different location
+    Extension = .otf % Change the extension if your font file has a different extension
+]
 
 % \chapterfont{\sffamily\fontsize{17}{17}}
 % \sectionfont{\sffamily\fontsize{14}{15}}

@@ -1,13 +1,30 @@
 \newpage
-% This is the last page of the document
+\newgeometry{top=56mm,bottom=30mm,left=26mm, right=35mm}
+\definecolor{kth-blue}{RGB/cmyk}{25,84,166/0.849,0.494,0,0.349} 
 \thispagestyle{empty}
-\AddToShipoutPictureBG*{%]
-    \AtPageLowerLeft{%
-        \includegraphics[width=1.0\paperwidth]{setup/img/kth-footer.png}
-    }%
+% This is the last page of the document
+\begin{textblock*}{10cm}(38.83pt, {\paperheight - 70pt}) % {block width} (coords) 
+\noindent{\fontsize{10}{12} TRITA – ITM-EX 2023:XXX}
+\end{textblock*}
+
+\begin{textblock*}{5cm}(38.83pt, {\paperheight - 44pt}) % {block width} (coords)  - was 44pt
+\noindent{\fontsize{8}{9} 
+    \textcolor{kth-blue}{www.kth.se}
 }
+\end{textblock*}
+\begin{textblock*}{510pt}(38.83pt, {\paperheight - 34pt}) % {block width} (coords) - was 24.634pt
+\begin{tikzpicture}
+\draw[kth-blue, line width=1.0 pt] (0pt,0pt) -- (510pt,0pt);
+\end{tikzpicture}
+\end{textblock*}
+% \thispagestyle{empty}
+% \AddToShipoutPictureBG*{%]
+%     \AtPageLowerLeft{%
+%         \includegraphics[width=1.0\paperwidth]{setup/img/kth-footer.png}
+%     }%
+% }
 
-\PlaceText{140mm}{272mm}{\color{white}\fontsize{10}{0} TRITA – ITM-EX 2023:XXX }
+% \PlaceText{140mm}{272mm}{\color{white}\fontsize{10}{0} TRITA – ITM-EX 2023:XXX }
 
 
-\PlaceText{20mm}{282mm}{\color{white}\fontsize{12}{0}\sffamily \href{www.kth.se}{www.kth.se}}
+% \PlaceText{20mm}{282mm}{\color{white}\fontsize{12}{0}\sffamily \href{www.kth.se}{www.kth.se}}
