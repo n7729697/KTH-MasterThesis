@@ -24,12 +24,12 @@
 	~
 }
 
-
+% \pagestyle{plain}
 \titleformat
 {\chapter} % command
 [display] % shape
 {\normalfont\huge\bfseries} % format
-{\hfill Chapter \ \thechapter} % label
+{\hfill \thechapter} % label
 {-2ex} % sep
 {
     \vspace{-1.2em}
@@ -44,32 +44,31 @@
 \vspace{-2ex}%
 \rule{\textwidth}{.6pt}
 ] % after-code
+
 \newpage
 \pagenumbering{Roman}
-\thispagestyle{plain}
+% \thispagestyle{plain}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  The English abstract          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter*{Abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Quadruped robots shared advantages of maneuverability in complex terrain without human effort, for instance, they can provide greater absorption capacity, allowing the robot to better withstand impacts and shocks. While rigid robots are known for their fast response and motion accuracy, they may be limited in their motion range due to their rigid mechanical structures, such as joints and hydraulic actuators. Recently, advances in sensors, actuators, and computers have made it possible to control soft quadruped robots in real life easily.
+Quadruped robots share advantages of maneuverability in complex terrain without human effort; for instance, they can provide greater absorption capacity, allowing the robot to withstand impacts and shocks better. While rigid robots are known for their fast response and motion accuracy, they may be limited in their motion range due to their rigid mechanical structures, such as joints and hydraulic actuators. Recently, the advancement in sensors, actuators, and computers have facilitated the easy real-life control of soft quadruped robots, enabling the exploration of control strategies for enhanced adaptability and efficiency in diverse terrains and environments. Meanwhile, the utilization of reinforcement learning for the control of robotics facilitates the attainment of autonomous and adaptable robotic behaviors, where robots learn to act through interactions with their environments to optimize performance. 
 
+Nevertheless, despite progress in control of quadruped robotics, integrating advanced control methods like reinforcement learning necessitates extensive training and robustness considerations for ensuring secure real-world functionality. Adapting effective simulation-based control techniques to tangible robots encounters challenges stemming from the disparity between simulated and real-world environments, demanding improved reinforcement learning methodologies. This thesis strikes to contribute significantly to the augmentation of robotic capabilities by employing a optimal gait control of soft quadruped robots through model-based reinforcement learning. By addressing the challenges tied to real-world implementation complexities and refining control structures, it aims to pave a transformative pathway for the harmonious amalgamation of reinforcement learning into the soft quadruped robotics domain, enhancing performance, adaptability, and autonomy.
 
-Write an abstract. Introduce the subject area for the project and describe the problems that are solved and described in the thesis. Present how the problems have been solved, methods used and present results for the project. Use probably one sentence for each chapter in the final report.
-
-The presentation of the results should be the main part of the abstract. Use about ½ A4-page.
-English abstract
+Within the contents of this report, the implementation of model-based reinforcement learning techniques to optimize gait control is included, detailing the simulation setup, reward structure, and policy refinement process. In Chapter \ref{chap5}, a comprehensive presentation of the results is provided, along with an in-depth analysis that validates the effectiveness of the proposed methodologies. This analysis reveals notable improvements in training efficiency and autonomous behavior, ultimately affirming the efficacy of the undertaken methods.
 
 \vspace{2cm}
 \subsection*{Keywords:}
-Machine Learning, Model-Based Reinforcement Learning(MBRL), Soft Quadruped Robots, Gait Pattern
+Quadruped Robots, Soft Robotics, Optimal Gait Control, Model-Based Reinforcement Learning(MBRL)
 
 \titleformat
 {\chapter} % command
 [display] % shape
 {\normalfont\huge\bfseries} % format
-{\hfill Chapter \ \thechapter} % label
+{\hfill \thechapter} % label
 {-2ex} % sep
 {
     \vspace{-1.2em}
@@ -86,20 +85,20 @@ Machine Learning, Model-Based Reinforcement Learning(MBRL), Soft Quadruped Robot
 ] % after-code
 
 \newpage
-\thispagestyle{plain}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%	 The Swedish abstract         %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Sammanfattning:}
+\chapter*{Sammanfattning}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Mjuka fyrbenta robotar har potential att övervinna begränsningarna hos styva robotar i komplexa terrängmiljöer. De kan utnyttja sin större deformationskapacitet för att anpassa sig till stötar och chocker utan mänsklig intervention. Styva robotar, å andra sidan, kan ha hög hastighet och precision, men deras rörelseomfång kan vara begränsat av deras styva mekaniska komponenter, såsom leder och elmotorer. Nya framsteg inom sensorik, ställdonsteknik och beräkning har möjliggjort effektiv styrning av mjuka fyrbenta robotar i realtid.
+Fyrbenta robotar har fördelen att kunna manövrera i komplex terräng utan mänsklig ansträngning, och de kan till exempel ge större absorptionsförmåga så att roboten bättre kan stå emot stötar och slag. Även om stela robotar är kända för sin snabba respons och exakta rörelser, kan de vara begränsade i sitt rörelseområde på grund av sina stela mekaniska strukturer, som leder och hydrauliska ställdon. På senare tid har utvecklingen av sensorer, ställdon och datorer gjort det lättare att styra mjuka fyrbenta robotar i verkliga livet, vilket gör det möjligt att utforska styrstrategier för ökad anpassningsförmåga och effektivitet i olika terränger och miljöer. Samtidigt underlättar användningen av förstärkningsinlärning för styrning av robotteknik uppnåendet av autonoma och anpassningsbara robotbeteenden, där robotar lär sig att agera genom interaktioner med sina miljöer för att optimera prestanda. 
 
+Trots framstegen inom styrning av fyrbenta robotar kräver integrering av avancerade styrmetoder som förstärkningsinlärning omfattande utbildning och robusthetsöverväganden för att säkerställa säker funktionalitet i den verkliga världen. Att anpassa effektiva simuleringsbaserade styrtekniker till konkreta robotar stöter på utmaningar som härrör från skillnaden mellan simulerade och verkliga miljöer, vilket kräver förbättrade metoder för förstärkningsinlärning. Denna avhandling strävar efter att bidra väsentligt till att öka robotförmågan genom att använda en optimal gångkontroll av mjuka fyrhjuliga robotar genom modellbaserad förstärkningsinlärning. Genom att ta itu med de utmaningar som är kopplade till den verkliga implementeringskomplexiteten och förfina kontrollstrukturer, syftar den till att bana en transformativ väg för den harmoniska sammanslagningen av förstärkningsinlärning i den mjuka fyrhjuliga robotdomänen, vilket förbättrar prestanda, anpassningsförmåga och autonomi.
 
-Skriv samma abstract på svenska. Introducera ämnet för projektet och beskriv problemen som löses i materialet. Presentera 
+Inom innehållet i denna rapport ingår implementeringen av modellbaserade tekniker för förstärkningsinlärning för att optimera gångkontrollen, med en detaljerad beskrivning av simuleringsinställningen, belöningsstrukturen och policyförfiningsprocessen. I kapitel \ref{chap5} ges en omfattande presentation av resultaten, tillsammans med en djupgående analys som validerar effektiviteten hos de föreslagna metoderna. Analysen visar på betydande förbättringar av träningseffektiviteten och det autonoma beteendet, vilket i slutändan bekräftar att de föreslagna metoderna är effektiva.
 
 \subsection*{Nyckelord}
-Maskininlärning, Modellbaserad Förstärkningsinlärning, Mjuka Fyrbenta Robotar, Gångmönster
+Fyrhjuliga robotar, mjuk robotteknik, adaptiv gångkontroll, modellbaserad förstärkningsinlärning
 
 \titleformat
 {\chapter} % command
@@ -119,7 +118,6 @@ Maskininlärning, Modellbaserad Förstärkningsinlärning, Mjuka Fyrbenta Robota
 ] % after-code
 
 \newpage
-\thispagestyle{plain}
 \chapter*{Acknowledgements}
 I am deeply grateful for the opportunity to complete this Master's Thesis and would like to acknowledge the support and guidance of several individuals who have contributed to the successful completion of this project.
 
@@ -145,5 +143,4 @@ Lastly, I must acknowledge myself, as I am also proud of the dedication, perseve
 \etocsettagdepth{mtappendix}{none}
 
 \tableofcontents
-\thispagestyle{plain}
 \newpage

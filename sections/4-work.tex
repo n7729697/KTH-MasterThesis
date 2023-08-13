@@ -1,20 +1,27 @@
 \chapter{Model-based Reinforcement Learning}
 \label{chap4}
 \textit{This chapter reviews the details about the implementation of Model-based \ac{RL} for optimal gait control of soft quadruped robots by data-driven methods.}
+
 \section{Neural Networks Design}
+The inputs represent features of the input data, each associated with a weight indicating its significance. The transfer function aggregates the weighted inputs, yielding a weighted sum or activation potential. The activation function introduces non-linearity and determines the neuron's output to the network. 
+
+Similar to neural network, an \ac{ANN} consists of interconnected layers of artificial neurons, including the input layer, hidden layers, and output layer, which builds up the world of artificial intelligence. The input layer receives raw data and transfers it to subsequent layers. Hidden layers perform intermediate computations, using activation functions to extract complex features. The output layer produces the final network output based on the assigned task, such as classification or regression. 
+
 Describe the degree project. What did you actually do? This is the practical description of how the method was applied. 
 \subsection{Neural Network Architecture}
 A fully connected layer refers to a neural network in which each neuron applies a linear transformation to the input vector through a weights matrix. As a result, all possible connections layer-to-layer are present, meaning every input of the input vector influences every output of the output vector. Neural networks are a set of dependent non-linear functions. Each individual function consists of a neuron (or a perceptron). In fully connected layers, the neuron applies a linear transformation to the input vector through a weights matrix. A non-linear transformation is then applied to the product through a non-linear activation function f. $y_{j k}(x)=f\left(\sum_{i=1}^{n_H} w_{j k} x_i+w_{j 0}\right)$
-Activation Function (ReLU): ReLU (Rectified Linear Unit) is a commonly used activation function in deep neural networks. It introduces non-linearity into the model, enabling the network to learn complex relationships in the data. ReLU applies element-wise activation by setting negative values to zero and leaving positive values unchanged.
+Activation Function: \ac{ReLu} is a commonly used activation function in deep neural networks. It introduces non-linearity into the model, enabling the network to learn complex relationships in the data. \ac{ReLu} applies element-wise activation by setting negative values to zero and leaving positive values unchanged.
+
+Reducing the number of network layers actually weakens the fitting ability of the network
 
 After each fully connected layer, apply the ReLU activation function to introduce non-linearity. This is typically done to enhance the network's representational power and improve its ability to capture complex patterns in the data.
-\input{figures/NN}
+\input{figures_hex/chap4/NN}
 
 \subsubsection{loss functions}
 Loss functions measure the discrepancy between the predicted outputs of the model and the true labels. The choice of loss function depends on the nature of the task. For multi-class classification problems like yours, common choices include cross-entropy loss and categorical hinge loss. These loss functions encourage the model to output probabilities that align with the true class labels and penalize incorrect predictions.
 
 \subsubsection{Optimization and Validation}
-Optimization algorithms are used to update the model's parameters during the training process. Popular optimization algorithms include Stochastic Gradient Descent (SGD), Adam, and RMSprop. These algorithms adjust the weights of the model based on the gradients of the loss function with respect to the parameters. They help to guide the model towards finding optimal parameter values that minimize the loss function.
+Optimization algorithms are used to update the model's parameters during the training process. Popular optimization algorithms include \ac{SGD}, \ac{Adam}, and \ac{RMSProp}. These algorithms adjust the weights of the model based on the gradients of the loss function with respect to the parameters. They help to guide the model towards finding optimal parameter values that minimize the loss function.
 
 Validation techniques are used to assess the model's performance on unseen data and prevent overfitting. One common approach is to split the available data into training and validation sets. The training set is used to update the model's parameters, while the validation set is used to evaluate the model's performance on data it hasn't seen before. This helps to gauge the generalization ability of the model. Other techniques like k-fold cross-validation and stratified sampling can also be used to ensure robust evaluation.
 
@@ -38,7 +45,7 @@ It uses adaptive learning rates for each parameter and can handle sparse gradien
 It can converge quickly and has been shown to work well for a wide range of deep learning problems.
 Cons:
 
-It can converge to suboptimal solutions in some cases.
+It can converge to sub optimal solutions in some cases.
 It may require more memory compared to \ac{SGD}.
 Root mean square propagation (RMSprop):
 Pros:
@@ -119,3 +126,7 @@ blabla
 \section{Model-based RL Algorithm}
 
 \section{Validation}
+
+\section{Control architecture Design}
+\subsection{Task Planning and Execution}
+

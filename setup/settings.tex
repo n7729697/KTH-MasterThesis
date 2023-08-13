@@ -56,6 +56,7 @@
 % \usepackage{mathdots}
 % \usepackage{yhmath}
 \usepackage{siunitx}
+\usepackage{pdfpages}                  % for pdf insert
 % \usepackage{array}
 % \usepackage{gensymb}
 \usepackage{amssymb}
@@ -75,12 +76,16 @@
 \usepackage{titlesec}               % For title
 \usepackage{longtable}              % For long table
 % \usepackage{smartdiagram}
-\usepackage{overpic}
-\usepackage[absolute,overlay]{textpos}
+\usepackage{overpic}                % overlay graphics
+\usepackage[absolute,overlay]{textpos} % a flexible way to position tex
+% \usepackage{glossaries}             % For glossarries
 \usepackage{xeCJK}                  % For Chinese
+% \usepackage{xpatch}                 % provides commands for patching existing commands or environments.
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
 \usetikzlibrary{chains,shapes.symbols,positioning}
-\usepackage[printonlyused]{acronym}
+\usepackage[nohyperlinks]{acronym} %[printonlyused]
 
 \counterwithin{figure}{section} 
 \counterwithin{table}{section}
@@ -89,11 +94,15 @@
 \setmainfont{TeX Gyre Termes} 
 % \setmainfont{Georgia} 
 \setsansfont{Arial}
+
 \newfontfamily\footerfont{Georgia}
 \newfontfamily\colvillebold{ColvilleBold}[
     Path = {setup/font/}, % Change this path if you uploaded the font file to a different location
     Extension = .otf % Change the extension if your font file has a different extension
 ]
+\setCJKmainfont{Noto Serif CJK SC} % Use Noto Serif CJK SC as the CJK font
+\setCJKsansfont{Noto Sans CJK SC} % Use Noto Sans CJK SC as the CJK sans-serif font
+\setCJKmonofont{Noto Sans Mono CJK SC} % Use Noto Sans Mono CJK SC as the CJK monospace font
 
 % \chapterfont{\sffamily\fontsize{17}{17}}
 % \sectionfont{\sffamily\fontsize{14}{15}}
@@ -106,6 +115,7 @@
 %   {\normalfont\sffamily\Large\bfseries}
 %   {\thesection}{1em}{}
 
+
 % Remove the title and make sure that the text is adjusted
 % \usepackage{abstract}
 % \setlength{\absleftindent}{0mm}
@@ -116,23 +126,39 @@
 % Renaming and setting style of table of contents
 \renewcommand*\contentsname{Contents}
 \renewcommand*\cfttoctitlefont{\fontsize{16}{0}\bf\sffamily}
-\renewcommand\cftchapfont{\fontsize{14}{0}\bf\sffamily}
-\renewcommand\cftchappagefont{\fontsize{13}{0}\bf\sffamily}
-\renewcommand\cftsecfont{\fontsize{12}{0}\sffamily}
-\renewcommand\cftsecpagefont{\fontsize{12}{0}\sffamily}
-\renewcommand\cftsubsecfont{\fontsize{12}{0}\sffamily}
-\renewcommand\cftsubsecpagefont{\fontsize{12}{0}\sffamily}
+\renewcommand\cftchapfont{\fontsize{15}{0}\bf}
+\renewcommand\cftchappagefont{\fontsize{14}{0}\bf}
+\renewcommand\cftsecfont{\fontsize{12}{0}}
+\renewcommand\cftsecpagefont{\fontsize{12}{0}}
+\renewcommand\cftsubsecfont{\fontsize{12}{0}}
+\renewcommand\cftsubsecpagefont{\fontsize{12}{0}}
 
 % Styling the header and footer
-\fancyhf{}
-\fancyhead{}
-\fancyfoot{}
-\fancyhead[OL]{\selectfont\leftmark}
-\fancyhead[OR]{\selectfont\thepage}
-\fancyhead[ER]{\selectfont\rightmark}
-\fancyhead[EL]{\selectfont\thepage}
+\fancypagestyle{myfancy}{%
+    \fancyhf{}
+    \fancyhead{}
+    \fancyfoot{}
+    \fancyhead[OL]{\selectfont\leftmark}
+    \fancyhead[OR]{\selectfont\thepage}
+    \fancyhead[ER]{\selectfont\rightmark}
+    \fancyhead[EL]{\selectfont\thepage}
+    \setlength{\headheight}{15.5pt}
+    \renewcommand{\headrulewidth}{0.4pt} % Header rule
+    % \renewcommand{\footrulewidth}{0.4pt} % Footer rule
+}
+
+\fancypagestyle{myempty}{%
+    \fancyhf{} % Clear all header and footer fields
+    \setlength{\headheight}{0em}
+    % \cfoot[C]{\selectfont\thepage}
+    % \fancyhead[L]{\selectfont\leftmark}
+    \setlength{\headheight}{15.5pt}
+    \fancyfoot[C]{\thepage} % Centered page number in the footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule
+    \renewcommand{\footrulewidth}{0pt} % Remove footer rule
+}
 % \fancyfoot[R]{\footerfont\thepage}
-\setlength{\headheight}{15.5pt}
+
 
 \fancypagestyle{plain}{
     \fancyhf{}
@@ -142,12 +168,12 @@
     % \fancyhead{}
     % \fancyfoot{}
     \renewcommand{\headrulewidth}{0pt}
-    \fancyfoot[C]{\footerfont\thepage}
+    \fancyfoot[C]{\selectfont\thepage}
 }
 
 \titlespacing*{\chapter}{0pt}{0pt}{10pt}
-\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
-\pagestyle{fancy}
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{plain}}}
+
 
 % Making the command for placing text in random locations
 \newcommand\PlaceText[3]{%
