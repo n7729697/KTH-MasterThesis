@@ -47,12 +47,6 @@
         \foreach \l [count=\x from 0] in {\small Input \\\small Layer\\(14) ,\small Hidden \\\small Layer 1\\(64), \small Hidden \\\small Layer 2\\(128), \small Hidden \\\small Layer 3\\(64), \small Output \\\small Layer\\(10)}
           \node [align=center, below, yshift=-5.5cm] at (\x*2,2) {\l};
     \end{tikzpicture}
-    \caption{Neural network structure of surrogate model}
+    \caption{DNN Architecture. This diagram depicts a DNN structure characterized by three hidden layers. The initial layer comprised the input data, also followed by a fully connected layer featuring 64 neurons. Subsequently, a second fully connected layer with 128 neurons establishes connections, followed by another fully connected layer with 64 neurons. It's worth highlighting that each of these fully connected layers is ignited by a Rectified Linear Unit (ReLU) function, which adds non-linearity to the network's computations. }
     \label{fig:NN}
 \end{figure}
-        % \foreach \l [count=\i] in {1,2,3,64}
-        %   \node [above] at (hidden1-\i.north) {$H_{1,\l}$};
-        % \foreach \l [count=\i] in {1,2,3,4,128}
-        %   \node [above] at (hidden2-\i.north) {$H_{2,\l}$};
-        % \foreach \l [count=\i] in {1,2,3,64}
-        %   \node [above] at (hidden3-\i.north) {$H_{3,\l}$};

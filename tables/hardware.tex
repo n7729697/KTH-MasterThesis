@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lp{10cm}}
+        \toprule
+        Component        & Description                             \\\midrule
+        Servo motor$\times 12$  & TrackStar TS-411MG  (Information from: \href{https://hobbyking.com/en_us/trackstar-ts-411mg-digital-1-10-scale-short-course-steering-servo-11-1kg-0-09sec-57g.html?___store=en_us}{HobbyKing.com}) \\
+        Motor control board & STM32G431KB (Information from: \href{https://www.st.com/en/evaluation-tools/nucleo-g431kb.html}{st.com}) \\
+        High level control board  & Raspberry Pi4 Model-B standard (Information from: \href{https://www.raspberrypi.com/products/raspberry-pi-4-model-b/}{raspberrypi.com}) \\
+        Interface board & Designed by Muralidharan et al. \cite{thorapallimuralidharanContinuumActuatorBased2020} and manufactured by Shenzhen JLC Technology Group Co., Ltd \\
+        \ac{IMU} & Adafruit BNO055 9-DoF@I2C (Information from: \href{https://www.bosch-sensortec.com/products/smart-sensors/bno055/#documents}{Adafruit.com}) \\
+        \ac{ToF} $\times 5$ & Adafruit VL53L1X Breakout (Information from: \href{https://www.mouser.se/ProductDetail/Pimoroni/PIM373?qs=lc2O%252BfHJPVbu7kI%2FlA0xSg%3D%3D}{mouse.com}) \\
+        Step down regulator & LTC3780 DC-DC 5-32V to 1V-30V 10A (Information from: \href{https://www.analog.com/en/products/ltc3780.html#product-overview}{analog.com}) \\
+        Battery $\times 2$  & Li-PO 2S 7.4V 30C 1300mAh  (Information from: \href{https://www.batteriexperten.com/sv/artiklar/li-po-2s-74v-30c-1300mah-t-kontakt-vapex.html?gclid=CjwKCAjwoqGnBhAcEiwAwK-OkaSSg7U-01roWZIcyx2yhCrvc7GKyWF5eUhzEE2re9kqi-mnn9GDZBoCB6AQAvD_BwE}{batteriexperten.com})   \\\bottomrule
+        \end{tabular}%
+    \caption{Hardware components used in the physical robot}
+    \label{tab:board}
+\end{table}
