@@ -2,7 +2,7 @@
 \label{chap5}
 \textit{Describe the results of the degree project.}
 
-\section{State-space Restriction}
+\section{Action-space Restriction}
 
 
 
@@ -13,6 +13,13 @@
 
 \section{Model-based RL Performance}
 \input{tables/rq2test}
+In order to examine the operational capacity and investigate the gait patterns of the soft robot, we applied the above RL setups to learn the walking motions with different speed references $v_{ref}$, where the training settings are identical in each experiment. During the training experiments, we observe that the training performance of the simulated robot is susceptible to the reference speed $v_{ref}$. With a higher target velocity, the agent is able to walk forward in fewer training episodes with a converged policy. On the other hand, with a smaller $v_{ref}$ as the target, the agent is prone to pitch forward and the episode is terminated. We start the training process with various random seeds, and the training has a higher failure rate with the agent stuck in the local minimal. Hence intuitively, we regard mastering the low-speed locomotion policy as a more difficult task for the agent.
+
+
+\subsection{Continue Learning}
+Owing to the good exploration capacity in the SAC algorithm, a converged agent can be retrained with the potential to adapt the policy for different tasks. Therefore, the converged policy that leads the robot to walk at MBRL can be reused as the initialized policy in the continued training with more accurate model.
+
+To accelerate the training process, we pre-determine a working behavior $A^e = [\textbf{a}_{t0}^e, ..., \textbf{a}_T^e]$, which provides the robot with an initial steady gait. In particular, we let the RL agent imitate the examples from the human knowledge by applying $A^e$ in the first second of each episode. Samples collected from these pairs are stored in the replay buffer and used later for learning. By this means, we resort to the framework of imitate learning methods. Even though our designed state–action trajectory cannot guarantee optimality, the agent can still benefit from emulating the guided elementary movements, leading to fast online implementation. 
 
 
 \section{Field Test}
