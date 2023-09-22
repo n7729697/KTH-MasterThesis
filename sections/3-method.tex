@@ -8,14 +8,14 @@ Concerning \hyperref[rq1]{research question 1}, the state space restriction meth
 \begin{itemize}
     \item Independent variables: 
     \begin{itemize}
-        \item Compressed length of the actuator limit($z_l$), Type: Continuous, Units: Millimeters
-        \item Bending angle limit ($\alpha_b$), Type: Continuous, Units: Radian
+        \item Compressed length of the actuator limit($z_l$ (mm)), Type: Continuous
+        \item Bending angle limit ($\alpha_b$ (rad)), Type: Continuous
     \end{itemize}
     \item Dependent variables:
     \begin{itemize}
-        \item Model accuracy, Type: Continuous, Units: $R$, NRMSE
-        \item Long-term prediction accuracy, Type: Continuous, Units: $R$, NRMMSE
-        \item Simulation time without failure, Type: Continuous, Units: time step 
+        \item Model accuracy, Type: Continuous, Metrics: Validation RMSE, Validation Loss, $R$ and NRMSE of single step prediction
+        \item Long-term prediction accuracy, Type: Continuous, Metrics: $R$, NRMMSE
+        \item Simulation time without failure, Type: Continuous, Metrics: time steps before failure 
     \end{itemize}
 \end{itemize}
 
@@ -24,19 +24,19 @@ Regarding to \hyperref[rq2]{research question 2}, another Analysis of Variance (
 \begin{itemize}
     \item Independent variables: 
     \begin{itemize}
-        \item Type of RL method, Type: Categorical, Units: Model-based, Model-free
+        \item Type of RL method, Type: Categorical, Categories: Model-based, Model-free
     \end{itemize}
     \item Covariance:
     \begin{itemize}
-        \item Desired walking speed ($v_x$), Type: Continuous, Units: Meter per second
+        \item Desired walking speed ($v_x$ (m/s)), Type: Continuous
     \end{itemize}
     \item Dependent variables:
     \begin{itemize}
-        \item Stability, Type: Continuous, Units: Sum of moment, Newton*meter
-        \item Resultant walking speed, Type: Continuous, Units: Meter per second
-        \item Cost-of-transport, Type: Continuous, Units: Percentage
-        \item Learning efficiency, Type: Continuous, Units: Number of iterations to converge
-        \item Long-term planning , Type: Continuous, Units: Cumulative reward
+        \item Stability (N*m), Type: Continuous, Metrics: Sum of moment, 
+        \item Resultant walking speed (m/s), Type: Continuous
+        \item Cost-of-transport (J/kg/m), Type: Continuous, Metrics: Energy used by a weight to travel a distance
+        \item Learning efficiency, Type: Continuous, Metrics: Number of iterations to converge
+        \item Long-term planning, Type: Continuous, Metrics: Cumulative reward
     \end{itemize}
 \end{itemize}
 A one-way Analysis of covariance (ANCOVA) test will be conducted with \ac{RL} method type as one factor, and the desired walking speed as a covariance. The null hypothesis is that there is significant difference in the means of the performance metrics between the two RL methods with different desired walking speed. If the null hypothesis is rejected, it indicates that there is a significant difference in at least one of the performance metrics between the two RL methods. Furthermore, a Pareto analysis will be employed to evaluate the trade-off between multiple objectives, focusing on simulation benefits, where learning efficiency can be measured by the number of iterations or episodes required for the model-based RL algorithm to converge to a satisfactory policy, long-term planning effectiveness could be measured by evaluating cumulative reward obtained by the policy over a longer horizon. The Pareto front is then determined by identifying the set of solutions that cannot be improved in one objective without worsening at least one other objective. The Pareto set can be also computed, which is the set of algorithms that correspond to the Pareto front, and the Pareto optimal solutions will also be determined, which are the objective values associated with each point on the Pareto front. 
