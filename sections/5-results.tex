@@ -4,7 +4,7 @@
 
 \section{Surrogate Model Performance}
 \subsection{Performance Evaluation}
-To evaluate the surrogate model's performance, it is important to consider several critical metrics. These metrics serve as crucial indicators of how effectively the model approximates and forecasts the robot's behavior. Here, these metrics were elaborate without delving into details:
+To evaluate the surrogate model's performance, it is important to consider several critical metrics. These metrics serve as crucial indicators of how effectively the model approximates and forecasts the robot's behavior. Here, these metrics are elaborated without delving into details:
 \begin{itemize}
     \item Average Steps before Failure: This metric assesses the model's capacity to predict the duration of a simulation run without encountering failure, serving as an indicator of sample efficiency.
     \item Validation RMSE and Validation Loss: This RMSE quantifies the disparity between the surrogate model's predictions and the actual values present in the validation dataset, as defined in Equation \ref{eq:RMSE}. Lower RMSE values are indicative of a higher degree of precision and accuracy in forecasting future states ($s_{t+1}$). Concurrently, the Validation Loss serves as an overarching measure of the model's performance on the validation dataset, underscoring the significance of minimizing this metric to enhance predictive capabilities, as defined in Equation \ref{eq:loss}.
@@ -43,7 +43,7 @@ After the surrogate model determined in Section \ref{sec:NN_design}, we can cont
     \label{fig:MBRL_tr}
 \end{figure}
 
-The training progress, along with the Entropy and temperature coefficients, is visually represented in Figure \ref{fig:MBRL_tr}. In this plot, you can observe that the Soft Actor-Critic (SAC) algorithm was successful in training the agent. The reward steadily increased from around -45 to 150, signifying the learning of the desired behavior. Additionally, the entropy dropped to around -4 (the goal being the negative of the number of actions), and the temperature also decreased from 1 to 0. These trends indicate that the agent successfully learned the desired behavior during the training process. Following the training process, the determined agent was implemented in simulation to verify its performance. The results of this implementation are presented in Figure \ref{fig:MBRL_val}, providing valuable insights into how well the trained MBRL model performs in executing optimal gaits for the soft robot.
+The training progress, along with the Entropy and temperature coefficients, is visually represented in Figure \ref{fig:MBRL_tr}. In this plot, you can observe that the Soft Actor-Critic (SAC) algorithm was successful in training the agent. The reward steadily increased from around -45 to 150, signifying the learning of the desired behavior. Additionally, the entropy dropped to around -4 (the goal being the negative of the number of actions), and the temperature also decreased from 1 to 0. These trends indicate that the agent successfully learned the desired behavior during the training process. Following the training process, the determined agent was implemented in simulation to verify its performance. The results of this implementation are presented in Figure \ref{fig:MBRL_val}, providing valuable insights into how well the trained MBRL model performs in executing optimal gaits for the soft robot. After the agent finished trained in MBRL, it was validated in the simulation to have a overview of this agent. As shown in the figure, the robot have some velocity in x axis, but it barely moves and it just 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/chap5/MBRL_val.eps}
@@ -53,15 +53,26 @@ The training progress, along with the Entropy and temperature coefficients, is v
 
 To assess the operational capacity and explore the gait patterns of the soft robot, the same RL configurations were applied to learn different walking speeds denoted as $v_{ref}$. Throughout the training experiments, an interesting observation emerged: the training performance of the simulated robot was notably influenced by the reference speed $v_{ref}$. When the target velocity was set higher, the learning agent was able to achieve forward motion in fewer training episodes, ultimately converging to an effective policy. Conversely, when $v_{ref}$ was set to a lower value, the agent exhibited a tendency to pitch forward, resulting in episode termination. The training process was initiated with various random seeds, and it was observed that training had a higher failure rate when the agent became trapped in local minima. Consequently, it can be intuitively inferred that mastering the policy for low-speed locomotion posed a more challenging task for the agent.
 
+\subsection{Performance Evaluation}
+In the performance evaluation of the trained agent, it is important to consider several critical metrics. These metrics serve as crucial indicators of proficiency of the agent, referred to as the controller. Here, these metrics are expounded again avoiding excessive details:
+\begin{itemize}
+    \item Stability (rad/s): This metric pertains to the maximum angular velocity exhibited by the agent along the z-axis. It provides valuable insights into the agent's ability to maintain stability during operation, a fundamental aspect of its performance. 
+    \item Resultant walking speed (m/s): This metric involves assessing the agent's walking speed, particularly by calculating the average speed achieved during validation. It offers a straightforward measure of the agent's mobility and effectiveness in movement.
+    \item Cost-of-transport (J/kg/m):  The cost-of-transport metric evaluates the energy efficiency of the agent. It quantifies the amount of energy expended by the agent, normalized by its weight and the distance traveled. This metric is crucial for understanding the agent's energy consumption patterns.
+    \item Learning efficiency:  Learning efficiency gauges how quickly the agent converges to an optimal or satisfactory performance level. It can be quantified by measuring the number of iterations or episodes required for the agent to reach convergence. This metric provides insights into the agent's adaptability and learning capabilities.
+\end{itemize}
 
 \subsection{Continue Learning}
-To accelerate the training process, we pre-determine a working behavior $A^e = [\textbf{a}_{T_0}^e, ..., \textbf{a}_T^e]$, which provides the robot with an initial steady gait. In particular, we let the RL agent imitate the examples from the human knowledge by applying $A^e$ in the first second of each episode. Samples collected from these pairs are stored in the replay buffer and used later for learning. By this means, we resort to the framework of imitate learning methods. Even though our designed state–action trajectory cannot guarantee optimality, the agent can still benefit from emulating the guided elementary movements, leading to fast online implementation. 
+To accelerate the training process, a predefined expert behavior, denoted as $A^e = [\textbf{a}_{T_0}^e, ..., \textbf{a}_T^e]$, is established. This predefined behavior offers the robot an initial stable gait. Specifically, during the initial second of each training episode, the RL agent emulates human knowledge by executing the predefined behavior $A^e$. Data generated from this process is collected and stored in a replay buffer for subsequent learning phases. This approach aligns with the principles of imitation learning, where the RL agent imitates pre-established behaviors as a form of guidance. While it's important to note that this predefined state-action trajectory doesn't guarantee optimality, it serves as a valuable reference for the agent. Emulating these guided elementary movements enables the agent to swiftly implement and adapt its behavior in real-time scenarios, contributing to efficient online implementation.
 
+
+Long-term planning, Type: Continuous
 
 \section{Model-based RL Comparison}
 \label{Sec:MBRL}
-In order to examine the operational capacity and investigate the gait patterns of the soft robot, we applied the above RL setups to learn the walking motions with different speed references $v_{ref}$, where the training settings are identical in each experiment. During the training experiments, we observe that the training performance of the simulated robot is susceptible to the reference speed $v_{ref}$. With a higher target velocity, the agent is able to walk forward in fewer training episodes with a converged policy. On the other hand, with a smaller $v_{ref}$ as the target, the agent is prone to pitch forward and the episode is terminated. We start the training process with various random seeds, and the training has a higher failure rate with the agent stuck in the local minimal. Hence intuitively, we regard mastering the low-speed locomotion policy as a more difficult task for the agent.
 
+In order to examine the operational capacity and investigate the gait patterns of the soft robot, we applied the above RL setups to learn the walking motions with different speed references $v_{ref}$, where the training settings are identical in each experiment. During the training experiments, we observe that the training performance of the simulated robot is susceptible to the reference speed $v_{ref}$. With a higher target velocity, the agent is able to walk forward in fewer training episodes with a converged policy. On the other hand, with a smaller $v_{ref}$ as the target, the agent is prone to pitch forward and the episode is terminated. We start the training process with various random seeds, and the training has a higher failure rate with the agent stuck in the local minimal. Hence intuitively, we regard mastering the low-speed locomotion policy as a more difficult task for the agent.
+\subsection{Compare with MFRL}
 So the chosen speed references are 0.2, 0.3, 0.5 m/s. ANCOVA analysis you conducted to compare Model-Based Reinforcement Learning (MBRL) and Model-Free Reinforcement Learning (MFRL) while controlling for the covariate desired walking speed ($v_{ref}$) with respect to the dependent variables, stability, resultant walking speed, "\ac{COT}, learning efficiency, and Long-term planning, pre-defined in Section \ref{Sec:test_def}. 
 \subsubsection*{Stability}
 The ANCOVA analysis revealed a significant difference in the stability of walking between MBRL and MFRL while controlling for the covariate $v_{ref}$, F(1, N) = [Your F-statistic], p = [Your p-value]. After accounting for the influence of $v_{ref}$, it was found that MBRL demonstrated a significantly higher stability in terms of less velocity in the y-direction and less maximum rotation angle. This suggests that the choice of RL method has a significant positive impact on the stability of walking.
@@ -76,5 +87,15 @@ The ANCOVA analysis conducted for long-term planning, while controlling for $v_{
 
 \input{tables/rq2test}
 
+\subsection{Compare with Expert Gait}
+
+
 
 \section{Field Test}
+The culmination of the MBRL and continue training efforts is the deployment of the trained controller onto the physical SoftQ robot. This section presents the results of the field tests, providing insights into the controller's transferability, generalization capabilities, and its performance in real-world scenarios.
+
+The primary objective of the field tests is to assess the extent to which the controller's learned motor skills can be transferred from the simulated environment to the physical robot. The results demonstrate the remarkable transferability and generalization capabilities of the trained controller. Despite the disparities between the simulation and the real world, the controller seamlessly applies the acquired behaviors in tangible, real-world settings. 
+
+One of the key performance metrics evaluated during the field tests is the robot's locomotion. The trained controller showcases impressive locomotion performance across a range of terrains and conditions. It effectively adapts its gait and motor control to navigate flat surfaces, uneven terrain, slopes, and surfaces with varying friction properties. The controller's ability to maintain stability and achieve locomotion is a testament to its adaptability and robustness.
+
+The outstanding performance observed in the field tests holds significant implications for the power of this methodology enhanced by MBRL.

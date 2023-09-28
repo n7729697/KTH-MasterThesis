@@ -33,11 +33,10 @@ Regarding to \hyperref[rq2]{research question 2}, another Analysis of Variance (
     \end{itemize}
     \item Dependent variables:
     \begin{itemize}
-        \item Stability (m/s, rad), Type: Continuous, Metrics: Velocity in y direction, maximum rotation angle 
-        \item Resultant walking speed (m/s), Type: Continuous
+        \item Stability (rad/s), Type: Continuous, Metrics: Maximum angular velocity on z axis 
+        \item Resultant walking speed (m/s), Type: Continuous, Metrics: Average speed in validation
         \item Cost-of-transport (J/kg/m), Type: Continuous, Metrics: Energy used by a weight to travel a distance
-        \item Learning efficiency, Type: Continuous, Metrics: Number of iterations to converge
-        \item Long-term planning, Type: Continuous, Metrics: Cumulative reward
+        \item Learning efficiency, Type: Continuous, Metrics: Iterations or episodes for the agent to converge
     \end{itemize}
 \end{itemize}
 A one-way Analysis of covariance (ANCOVA) test will be conducted with \ac{RL} method type as one factor, and the desired walking speed as a covariance. The null hypothesis is that there is significant difference in the means of the performance metrics between the two RL methods with different desired walking speed. If the null hypothesis is rejected, it indicates that there is no significant difference in at least one of the performance metrics between the two RL methods. Furthermore, to validate the findings and evaluate the agent's ability in a real-world context, a field test will be employed. This real-world implementation will provide practical insights into how the RL agent's performance translates to real-world scenarios, thereby enhancing the robustness and applicability of the research. 
