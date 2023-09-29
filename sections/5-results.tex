@@ -39,11 +39,11 @@ After the surrogate model determined in Section \ref{sec:NN_design}, we can cont
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/chap5/MBRL_tr.eps}
-    \caption{The Training Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
+    \caption{The Training Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature parameters during the training process.}
     \label{fig:MBRL_tr}
 \end{figure}
 
-The training progress, along with the Entropy and temperature coefficients, is visually represented in Figure \ref{fig:MBRL_tr}. In this plot, you can observe that the Soft Actor-Critic (SAC) algorithm was successful in training the agent. The reward steadily increased from around -45 to 150, signifying the learning of the desired behavior. Additionally, the entropy dropped to around -4 (the goal being the negative of the number of actions), and the temperature also decreased from 1 to 0. These trends indicate that the agent successfully learned the desired behavior during the training process. Following the training process, the determined agent was implemented in simulation to verify its performance. The results of this implementation are presented in Figure \ref{fig:MBRL_val}, providing valuable insights into how well the trained MBRL model performs in executing optimal gaits for the soft robot. After the agent finished trained in MBRL, it was validated in the simulation to have a overview of this agent. As shown in the figure, the robot have some velocity in x axis, but it barely moves and it just 
+The training progress, along with the entropy and temperature parameters, is visually represented in Figure \ref{fig:MBRL_tr}. In this plot, it is observed that the SAC algorithm was successful in training the agent. The reward steadily increased from around -45 to 150, signifying the learning of the desired behavior. Additionally, the entropy dropped to around -4 (the goal being the negative of the number of actions), and the temperature also decreased from 1 to 0. These trends indicate that the agent successfully learned the desired behavior during the training process. Following the training process, the determined agent was implemented in simulation to verify its performance. The results of this implementation are presented in Figure \ref{fig:MBRL_val}, providing valuable insights into how well the trained MBRL model performs in executing optimal gaits for the soft robot. After the agent finished trained in MBRL, it was validated in the simulation to have an overview of this agent. As shown in the figure, the robot have some velocity in x axis, but it barely moves and it just 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/chap5/MBRL_val.eps}
@@ -63,10 +63,39 @@ In the performance evaluation of the trained agent, it is important to consider 
 \end{itemize}
 
 \subsection{Continue Learning}
-To accelerate the training process, a predefined expert behavior, denoted as $A^e = [\textbf{a}_{T_0}^e, ..., \textbf{a}_T^e]$, is established. This predefined behavior offers the robot an initial stable gait. Specifically, during the initial second of each training episode, the RL agent emulates human knowledge by executing the predefined behavior $A^e$. Data generated from this process is collected and stored in a replay buffer for subsequent learning phases. This approach aligns with the principles of imitation learning, where the RL agent imitates pre-established behaviors as a form of guidance. While it's important to note that this predefined state-action trajectory doesn't guarantee optimality, it serves as a valuable reference for the agent. Emulating these guided elementary movements enables the agent to swiftly implement and adapt its behavior in real-time scenarios, contributing to efficient online implementation.
+To accelerate the training process, a predefined expert behavior, denoted as $A^e = [\textbf{a}_{T_0}^e, ..., \textbf{a}_T^e]$, is established\cite{jiSynthesizingOptimalGait2022}. This predefined behavior offers the robot an initial stable gait. Specifically, during the initial second of each training episode, the RL agent emulates human knowledge by executing the predefined behavior $A^e$. Data generated from this process is collected and stored in a replay buffer for subsequent learning phases. This approach aligns with the principles of imitation learning, where the RL agent imitates pre-established behaviors as a form of guidance. While it's important to note that this predefined state-action trajectory doesn't guarantee optimality, it serves as a valuable reference for the agent. Emulating these guided elementary movements enables the agent to swiftly implement and adapt its behavior in real-time scenarios, contributing to efficient online implementation.
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{img/chap5/MFRLvsCT.eps}
+    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
+    \label{fig:MFRLvsCT}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/chap5/best_CL.eps}
+    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
+    \label{fig:CT}
+\end{figure}
 
 Long-term planning, Type: Continuous
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{img/chap5/foot_trace.eps}
+    \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{img/chap5/pattern.pdf}
+    \caption{}
+    \end{subfigure}
+    \caption{The Learned gait patterns. (a) Four foot moving trajectories. (b) Footfall patterns}
+    \label{fig:CT_gait}
+\end{figure}
+
 
 \section{Model-based RL Comparison}
 \label{Sec:MBRL}
@@ -88,7 +117,12 @@ The ANCOVA analysis conducted for long-term planning, while controlling for $v_{
 \input{tables/rq2test}
 
 \subsection{Compare with Expert Gait}
-
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{img/chap5/vsexpert.eps}
+    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
+    \label{fig:vsExp}
+\end{figure}
 
 
 \section{Field Test}
