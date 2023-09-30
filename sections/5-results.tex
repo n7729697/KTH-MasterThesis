@@ -35,7 +35,7 @@ For multi-step predictions on the same expert gait pattern datasets, the effects
 Hence, the optimal action state restrictions can be identified as approximately $\alpha_b$ around 0.6 rad and $z_l$ around 7 mm. However, it's important to consider that these restrictions also impact MBRL training, as they limit the range of exploration within the robot's action space. Therefore, it's preferable to keep the action space as broad as possible. Another viable set of restrictions to consider is $\alpha_b$ around 0.63 rad and $z_l$ around 8 mm for the state space during surrogate model training and MBRL training. This broader range allows for more exploration and potentially better overall performance in subsequent MBRL learning.
 
 \section{Model-based RL Training}
-After the surrogate model determined in Section \ref{sec:NN_design}, we can continue to training of MBRL for optimal gait controls, which will be used as a gait controller in robot to navigate with learned optimal gait. It's important to note that the training settings remained consistent across all experiments. The code snippet for training details can be found in Section \ref{code:mbrl}. To account for potential variations due to randomness, the training process was initiated with various random seeds. It was observed that training had a higher failure rate when the agent became trapped in local minima. Consequently, it can be intuitively inferred that mastering the policy for low-speed locomotion posed a more challenging task for the agent. Notably, in our experiments, we maintained $v_{ref}$ at no smaller than 0.1 m/s to ensure meaningful training outcomes and the final time of the training in one episode $T_f$ is 10 seconds.
+After the surrogate model determined in Section \ref{sec:NN_design}, we can continue to training of MBRL for optimal gait controls, which will be used as a gait controller in robot to navigate with learned optimal gait. It's important to note that the training settings remained consistent across all experiments. The code snippet for training details can be found in Section \ref{code:mbrl}. To account for potential variations due to randomness, the training process was initiated with various random seeds. It was observed that training had a higher failure rate when the agent became trapped in local minima. Consequently, it can be intuitively inferred that mastering the policy for low-speed locomotion posed a more challenging task for the agent. Notably, in the experiments, $v_{ref}$ was maintained at no smaller than 0.1 m/s to ensure meaningful training outcomes and the final time of the training in one episode $T_f$ is 10 seconds.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/chap5/MBRL_tr.eps}
@@ -43,15 +43,54 @@ After the surrogate model determined in Section \ref{sec:NN_design}, we can cont
     \label{fig:MBRL_tr}
 \end{figure}
 
-The training progress, along with the entropy and temperature parameters, is visually represented in Figure \ref{fig:MBRL_tr}. In this plot, it is observed that the SAC algorithm was successful in training the agent. The reward steadily increased from around -45 to 150, signifying the learning of the desired behavior. Additionally, the entropy dropped to around -4 (the goal being the negative of the number of actions), and the temperature also decreased from 1 to 0. These trends indicate that the agent successfully learned the desired behavior during the training process. Following the training process, the determined agent was implemented in simulation to verify its performance. The results of this implementation are presented in Figure \ref{fig:MBRL_val}, providing valuable insights into how well the trained MBRL model performs in executing optimal gaits for the soft robot. After the agent finished trained in MBRL, it was validated in the simulation to have an overview of this agent. As shown in the figure, the robot have some velocity in x axis, but it barely moves and it just 
+The training progress, along with the entropy and temperature parameters, is visually represented in Figure \ref{fig:MBRL_tr}. The plot illustrates the successful training of the agent using the SAC algorithm. The cumulative reward steadily increased from approximately -45 to 150, indicating the acquisition of the desired behavior by the agent. Additionally, the entropy decreased to around -4 (with the goal being the negative of the number of actions), and the temperature parameter also exhibited a decline from 1 to 0.05. These trends signify that the agent effectively learned the desired behavior during the training phase. Subsequent to the training process, the trained agent was implemented in simulation to evaluate its performance. The results of this implementation are elucidated in Figure \ref{fig:MBRL_val}, providing valuable insights into how well the trained MBRL model performs in executing optimal gaits for the SoftQ. 
+
+Post-training validation in the simulation environment, conducted for a duration of 5 seconds, yielded noteworthy observations. As depicted in the figure, the robot exhibited some velocity along the x-axis. However, it remained virtually stationary at its initial position, effectively patrolling within a confined area. Despite generating speed, the robot failed to manifest any significant forward displacement. This phenomenon is notably characterized by a marked increase in the \ac{COT} during the initial phases of robot motion. This surge in \ac{COT} can be attributed to the imperative need for the robot to surmount inertia and initiate acceleration as it commences motion. Consequently, a substantial input of energy is necessitated. Additionally, heightened frictional forces encountered by mechanical components, such as wheels and joints, during the initial moments of motion contribute to this increased energy expenditure. In addition, the COT is defined as $$COT = \frac{E}{md}$$ where $E$ is the energy consumed to walk, $m$ is the mass of the robot and $d$ represents the distance travelled by the robot.
+
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/chap5/MBRL_val.eps}
-    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
+    \caption{The Validation Results of MBRL. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axes; (c) Speed of the robot along the $x$, $y$, and $z$ axes; (d) Orientation of the robot along the $x$, $y$, and $z$ axes.}
     \label{fig:MBRL_val}
 \end{figure}
 
-To assess the operational capacity and explore the gait patterns of the soft robot, the same RL configurations were applied to learn different walking speeds denoted as $v_{ref}$. Throughout the training experiments, an interesting observation emerged: the training performance of the simulated robot was notably influenced by the reference speed $v_{ref}$. When the target velocity was set higher, the learning agent was able to achieve forward motion in fewer training episodes, ultimately converging to an effective policy. Conversely, when $v_{ref}$ was set to a lower value, the agent exhibited a tendency to pitch forward, resulting in episode termination. The training process was initiated with various random seeds, and it was observed that training had a higher failure rate when the agent became trapped in local minima. Consequently, it can be intuitively inferred that mastering the policy for low-speed locomotion posed a more challenging task for the agent.
+To assess the operational capacity and explore the gait patterns of the soft robot, the same RL configurations were applied to learn optimal gaits under different reference speeds denoted as $v_{ref}$. Throughout the training experiments, an interesting observation emerged: the training performance of the simulated robot was notably influenced by the reference speed $v_{ref}$. When the target velocity was set higher, the learning agent was able to achieve forward motion in fewer training episodes, ultimately converging to an effective policy. Conversely, when $v_{ref}$ was set to a lower value, the agent exhibited a tendency to pitch forward, resulting in episode termination. The training process was initiated with various random seeds, and it was observed that training had a higher failure rate when the agent became trapped in local minima. Consequently, it can be intuitively inferred that mastering the policy for low-speed locomotion posed a more challenging task for the agent.
+
+Given the limitations observed in the direct application of the agent trained through MBRL, a decision was made to further train this agent in a model-free environment to bridge the reality gap effectively. It is noteworthy that adjustments were made to the reward structure, particularly in penalizing instances where all four legs bent in the same direction with a significant angle. The coefficient $\epsilon_4$ governing this penalty was increased from 10 to 100. This modification was introduced due to the possibility that the model-based training might generate actions that are fatal in simulation but less perilous in the real-world scenario.
+
+\subsection{Continue Learning}
+To accelerate the training process, a predefined expert behavior, denoted as $A^e = [\textbf{a}_{T_0}^e, ..., \textbf{a}_T^e]$, is established\cite{jiSynthesizingOptimalGait2022}. This predefined behavior offers the robot an initial stable gait. Specifically, during the initial second of each training episode, the RL agent emulates human knowledge by executing the predefined behavior $A^e$. By this means, we resort to the framework of \textit{imitate learning}\cite{koberImitationReinforcementLearning2010}. Data generated from this process is collected and stored in a replay buffer for subsequent learning phases. This approach aligns with the principles of imitation learning, where the RL agent imitates pre-established behaviors as a form of guidance. While it's important to note that this predefined state-action trajectory doesn't guarantee optimality, it serves as a valuable reference for the agent. Emulating these guided elementary movements enables the agent to swiftly implement and adapt its behavior in real-time scenarios, contributing to efficient online implementation. 
+
+To continue training the agent from MBRL, the same RL configurations were applied, with the exception of the penalty adjustment for the four legs bending. The goal for the robot was to learn an optimal gait for higher speed, with $v_{ref}$ set at 0.3 m/s. The reward functions remained the same as defined in Equation \ref{eq:reward}, but the coefficients were adjusted to $[\epsilon_1, \epsilon_2, \epsilon_3, \epsilon_4, \epsilon_5] = [5, −1/v_{ref}, 0.25, 100, 3]$. 
+
+The results of continue training are visualized in Figure \ref{fig:MFRLvsCT} for comparison with Model-Free Reinforcement Learning (MFRL). Notably, it is observed that the continue training policy exhibited rapid improvement, reaching convergence at around 200 episodes. However, it's important to note that this policy incurs higher penalties, aligning with the assumption that the MBRL policy may generate riskier actions. Additionally, the MFRL policy converges at approximately 120 episodes, which is slower than the continue training agent. However, the reward at the beginning of training is higher for MFRL, indicating that the agent in early training may not actively promote forward motion but is associated with fewer high-risk actions. Furthermore, the MFRL approach failed to converge to a walking gait even after 400 episodes, and the MFRL agent did not learn to travel a significant distance. Notably, the MFRL method required about 24 hours of training, while MBRL and continue training together took approximately 10.5 hours. This substantial reduction in training time, coupled with the ability to achieve effective learning and improved gait control, underscores the efficiency and effectiveness of the continue training approach compared to the benchmark MFRL method.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{img/chap5/MFRLvsCT.eps}
+    \caption{The Training Results of Continue Training Compared to MFRL. (a) Cumulative reward in MFRL and continue training vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process of both MFRL and continue training.}
+    \label{fig:MFRLvsCT}
+\end{figure}
+
+The outcomes of validations for continue training are graphically presented in Figure \ref{fig:CT}, which serves as a overview of continue training performance. The COT achieved a remarkable low value of approximately 73 J/kg/m, signifying the robot's ability to traverse a certain distance with efficient energy consumption. Over a 5-second validation period, the robot covered a distance of 1.8 meters, achieving an average speed of 0.36 m/s, surpassing the reference speed of 0.3 m/s. These findings highlight the agent's capability to attain and sustain a speed higher than the predefined benchmark. Moreover, the robot demonstrated stability during locomotion, as indicated by the minor fluctuations in velocity along the $x$-axis and minimal deviations in the $y$ and $z$ axes. The orientation plots revealed controlled movement, with the largest rotation measuring approximately 0.055 radians in the initial stages, confirming a stable and well-maintained gait. Collectively, these validation results underscore the practical viability of the continue training technique in enhancing the robot's performance in real-world scenarios.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/chap5/best_CL.eps}
+    \caption{The Validation Results of Continue Training. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axes; (c) Speed of the robot along the $x$, $y$, and $z$ axes; (d) Orientation of the robot along the $x$, $y$, and $z$ axes.}
+    \label{fig:CT}
+\end{figure}
+
+Figure \ref{fig:CT_gait} (a) shows the examples of the four foot trajectories, and Figure \ref{fig:CT_gait} (b) with colored areas representing the contact regions demonstrates a typical gait patterns captured from the validation simulation. Synchronized motions were observed between the FR and RL legs, as well as the FL with RR legs, as they are linked as pairs. Notably, the FL and RR leg pairs exhibit a smaller swing area compared to the FR and RL pairs. This difference in swing area may be attributed to corrective actions addressing yaw rotation errors. These yaw rotation errors could potentially be caused by slight uneven mass distribution on the robot, favoring the right side, as indicated by the orientation in the $z$ axis shown in Figure \ref{fig:CT} (d). Additionally, a delay of approximately 0.1 seconds is observed between each diagonal leg pair. The contact time for each leg is around 0.15 seconds, resulting in the formation of a periodic gait pattern. This pattern indicates that the robot successfully learned to coordinate its movements in a rhythmic manner, which is essential for stable and sustained locomotion.
+
+\input{figures_hex/chap5/gait}
+
+Moreover, it's essential to highlight that the observed results go beyond demonstrating successful gait patterns and stability. They also reveal the practical significance of this achievement in terms of direction control within velocity control. As shown in Figure \ref{fig:CT} (d), in the beginning of walking, the robot initially turns to the right but subsequently corrects itself, adjusting its orientation slightly to the left by the end of the gait cycle. This phenomenon was also observed in field tests, as presented in Section \ref{video}. This capability for self-correction and precise direction control enhances the robot's suitability for applications that require controlled and accurate movement, further expanding its utility in real-world scenarios. 
+
+
+\section{Model-based RL Comparison}
+\label{Sec:MBRL}
+
+In order to examine the operational capacity and investigate the gait patterns of the soft robot, we applied the above RL setups to learn the walking motions with different speed references $v_{ref}$, where the training settings are identical in each experiment. During the training experiments, we observe that the training performance of the simulated robot is susceptible to the reference speed $v_{ref}$. With a higher target velocity, the agent is able to walk forward in fewer training episodes with a converged policy. On the other hand, with a smaller $v_{ref}$ as the target, the agent is prone to pitch forward and the episode is terminated. We start the training process with various random seeds, and the training has a higher failure rate with the agent stuck in the local minimal. Hence intuitively, we regard mastering the low-speed locomotion policy as a more difficult task for the agent.
 
 \subsection{Performance Evaluation}
 In the performance evaluation of the trained agent, it is important to consider several critical metrics. These metrics serve as crucial indicators of proficiency of the agent, referred to as the controller. Here, these metrics are expounded again avoiding excessive details:
@@ -62,45 +101,6 @@ In the performance evaluation of the trained agent, it is important to consider 
     \item Learning efficiency:  Learning efficiency gauges how quickly the agent converges to an optimal or satisfactory performance level. It can be quantified by measuring the number of iterations or episodes required for the agent to reach convergence. This metric provides insights into the agent's adaptability and learning capabilities.
 \end{itemize}
 
-\subsection{Continue Learning}
-To accelerate the training process, a predefined expert behavior, denoted as $A^e = [\textbf{a}_{T_0}^e, ..., \textbf{a}_T^e]$, is established\cite{jiSynthesizingOptimalGait2022}. This predefined behavior offers the robot an initial stable gait. Specifically, during the initial second of each training episode, the RL agent emulates human knowledge by executing the predefined behavior $A^e$. Data generated from this process is collected and stored in a replay buffer for subsequent learning phases. This approach aligns with the principles of imitation learning, where the RL agent imitates pre-established behaviors as a form of guidance. While it's important to note that this predefined state-action trajectory doesn't guarantee optimality, it serves as a valuable reference for the agent. Emulating these guided elementary movements enables the agent to swiftly implement and adapt its behavior in real-time scenarios, contributing to efficient online implementation.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\linewidth]{img/chap5/MFRLvsCT.eps}
-    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
-    \label{fig:MFRLvsCT}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.9\linewidth]{img/chap5/best_CL.eps}
-    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
-    \label{fig:CT}
-\end{figure}
-
-Long-term planning, Type: Continuous
-\begin{figure}[htb]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{img/chap5/foot_trace.eps}
-    \caption{}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{img/chap5/pattern.pdf}
-    \caption{}
-    \end{subfigure}
-    \caption{The Learned gait patterns. (a) Four foot moving trajectories. (b) Footfall patterns}
-    \label{fig:CT_gait}
-\end{figure}
-
-
-\section{Model-based RL Comparison}
-\label{Sec:MBRL}
-
-In order to examine the operational capacity and investigate the gait patterns of the soft robot, we applied the above RL setups to learn the walking motions with different speed references $v_{ref}$, where the training settings are identical in each experiment. During the training experiments, we observe that the training performance of the simulated robot is susceptible to the reference speed $v_{ref}$. With a higher target velocity, the agent is able to walk forward in fewer training episodes with a converged policy. On the other hand, with a smaller $v_{ref}$ as the target, the agent is prone to pitch forward and the episode is terminated. We start the training process with various random seeds, and the training has a higher failure rate with the agent stuck in the local minimal. Hence intuitively, we regard mastering the low-speed locomotion policy as a more difficult task for the agent.
 \subsection{Compare with MFRL}
 So the chosen speed references are 0.2, 0.3, 0.5 m/s. ANCOVA analysis you conducted to compare Model-Based Reinforcement Learning (MBRL) and Model-Free Reinforcement Learning (MFRL) while controlling for the covariate desired walking speed ($v_{ref}$) with respect to the dependent variables, stability, resultant walking speed, "\ac{COT}, learning efficiency, and Long-term planning, pre-defined in Section \ref{Sec:test_def}. 
 \subsubsection*{Stability}
@@ -129,7 +129,13 @@ The ANCOVA analysis conducted for long-term planning, while controlling for $v_{
 The culmination of the MBRL and continue training efforts is the deployment of the trained controller onto the physical SoftQ robot. This section presents the results of the field tests, providing insights into the controller's transferability, generalization capabilities, and its performance in real-world scenarios.
 
 The primary objective of the field tests is to assess the extent to which the controller's learned motor skills can be transferred from the simulated environment to the physical robot. The results demonstrate the remarkable transferability and generalization capabilities of the trained controller. Despite the disparities between the simulation and the real world, the controller seamlessly applies the acquired behaviors in tangible, real-world settings. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/chap5/real_vx.eps}
+    \caption{The Field Test Results of Measurement of Velocity at $x$ axis.}
+    \label{fig:real_vx}
+\end{figure}
 
 One of the key performance metrics evaluated during the field tests is the robot's locomotion. The trained controller showcases impressive locomotion performance across a range of terrains and conditions. It effectively adapts its gait and motor control to navigate flat surfaces, uneven terrain, slopes, and surfaces with varying friction properties. The controller's ability to maintain stability and achieve locomotion is a testament to its adaptability and robustness.
 
-The outstanding performance observed in the field tests holds significant implications for the power of this methodology enhanced by MBRL.
+The outstanding performance observed in the field tests holds significant implications for the power of this methodology enhanced by MBRL. The robot prototype successfully completes the preliminary walking test under real-time execution by utilizing the SAC trained agents.

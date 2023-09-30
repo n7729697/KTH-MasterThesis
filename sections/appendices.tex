@@ -40,7 +40,7 @@ The Kalman filter, a fundamental tool in state estimation for dynamic systems, c
 \textbf{State Transition Model (Predictive Step):}
 In the predictive step, the Kalman filter employs the system's dynamics to forecast the next state ($x_{k|k-1}$) based on the previous state estimate ($x_{k-1|k-1}$). This forecast hinges on a linear transformation captured by the state transition matrix ($A$):
 \begin{equation*}
-x_{k|k-1} = A \cdot x_{k-1|k-1}
+x_{k|k-1} = A \cdot x_{k-1|k-1} + B u_{k|k}
 \end{equation*}
 
 The state covariance ($P_{k|k-1}$) is also updated to account for the inherent uncertainty in this prediction:
@@ -80,8 +80,8 @@ In these equations, $I$ denotes the identity matrix. The Kalman filter's iterati
 
 
 
-\chapter{Source Code and Block Diagrams}
-In this chapter, the main the source code and block diagrams implemented in Simulink is provided. These elements play a crucial role in this thesis, enabling the replication of experiments, validation of results, and the potential for further advancements in our work.
+\chapter{Additional Showcases}
+In this chapter, the main the source code and block diagrams implemented in Simulink is provided, together with some videos of validating the trained agents. These elements play a crucial role in this thesis, enabling the replication of experiments, validation of results, and the potential for further advancements in our work.
 
 
 \section{Main Code of SoftQ}
@@ -99,3 +99,6 @@ The block diagrams for MBRL training and simulation in simulink could be found i
 \subsection*{Block Diagrams for Continue Training and MFRL}
 
 \subsection*{Block Diagrams for Simulink Controller}
+
+\section{Video from Simulation and Field Tests}
+\label{video}
