@@ -2,6 +2,8 @@
 \appendix
 \newpage
 
+\pagenumbering{gobble}
+
 \captionsetup[figure]{font=small,skip=0pt}
 \etocdepthtag.toc{mtappendix}
 \etocsettagdepth{mtchapter}{none}
@@ -9,9 +11,9 @@
 \etoctocstyle{1}{Appendix - Contents}
 \tableofcontents
 \pagestyle{plain}
+
 \newpage
 \pagenumbering{arabic}
-
 \chapter{Detailed Explanations and Supplementary Results}
 In this chapter, the detailed explanations of the concepts discussed in the main text and present supplementary results that contribute to a clearer overview of the key outcomes of this thesis. These additional findings provide valuable context and insights that complement the primary research findings.
 
@@ -92,6 +94,13 @@ ANCOVA is a powerful statistical tool that allows us to rigorously assess the im
     \label{fig:DNN_test}
 \end{figure}
 
+\section{Expert Gait Walking in Validation}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{img/AppA/expert_val.eps}
+    \caption{Expert Gait Tested in Validation Results. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axis; (c) Speed of the robot along the $x$, $y$, and $z$ axis; (d) Orientation of the robot along the $x$, $y$, and $z$ axis.}
+    \label{fig:expert_val}
+\end{figure}
 
 
 \chapter{Additional Showcases}

@@ -24,6 +24,43 @@
 	~
 }
 
+\titleformat
+{\chapter} % command
+[display] % shape
+{\normalfont\huge\bfseries} % format
+{\hfill \thechapter} % label
+{-2ex} % sep
+{
+    \vspace{-1.2em}
+    \input{tables/Abs_sv}
+    \vspace{-1em}
+    % \noindent
+    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
+    \rule[.3ex]{\linewidth}{.6pt}
+    % \vspace{-0.5ex}
+} % before-code
+[
+\vspace{-2ex}%
+\rule{\textwidth}{.6pt}
+] % after-code
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	 The Swedish abstract         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Sammanfattning}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Fyrbenta robotar har fördelen att kunna manövrera i komplex terräng utan mänsklig ansträngning, och de kan till exempel ge större absorptionsförmåga så att roboten bättre kan stå emot stötar och slag. Även om stela robotar är kända för sin snabba respons och exakta rörelser, kan de vara begränsade i sitt rörelseområde på grund av sina stela mekaniska strukturer, såsom leder och hydrauliska ställdon. På senare tid har utvecklingen av sensorer, ställdon och datorer gjort det lättare att styra mjuka fyrbenta robotar i verkliga livet, vilket gör det möjligt att utforska styrstrategier för ökad anpassningsförmåga och effektivitet i olika terränger och miljöer. Samtidigt underlättar användningen av förstärkningsinlärning för styrning av robotteknik uppnåendet av autonoma och anpassningsbara robotbeteenden, där robotar lär sig att agera genom interaktioner med sina miljöer för att optimera prestanda. 
+
+Trots framstegen inom styrning av fyrbenta robotar kräver integrering av avancerade styrmetoder som förstärkningsinlärning omfattande utbildning och robusthetsöverväganden för att säkerställa säker funktionalitet i den verkliga världen. Att anpassa effektiva simuleringsbaserade styrtekniker till konkreta robotar stöter på utmaningar som härrör från skillnaden mellan simulerade och verkliga miljöer, vilket kräver förbättrade metoder för förstärkningsinlärning. Denna avhandling strävar efter att bidra väsentligt till att öka robotförmågan genom att använda en optimal gångkontroll av mjuka fyrhjuliga robotar genom modellbaserad förstärkningsinlärning. Genom att ta itu med de utmaningar som är kopplade till den verkliga implementeringskomplexiteten och förfina kontrollstrukturerna, syftar den till att bana en transformativ väg för en harmonisk sammanslagning av förstärkningsinlärning i den mjuka fyrhjuliga robotdomänen, vilket förbättrar prestanda, anpassningsförmåga och autonomi.
+
+Inom innehållet i denna rapport ingår implementeringen av modellbaserade tekniker för förstärkt inlärning för att optimera gångkontrollen, med detaljer om simuleringsinställningen, belöningsstrukturen och policyförfiningsprocessen. En omfattande presentation av resultaten tillhandahålls, tillsammans med en djupgående analys som validerar effektiviteten hos de föreslagna metoderna. Analysen visar på betydande förbättringar av träningseffektiviteten och det autonoma beteendet, vilket i slutändan bekräftar effektiviteten hos de föreslagna metoderna. 
+
+\subsection*{Nyckelord}
+Fyrhjuliga robotar, mjuk robotteknik, adaptiv gångkontroll, modellbaserad förstärkningsinlärning
+
+
 % \pagestyle{plain}
 \titleformat
 {\chapter} % command
@@ -64,41 +101,6 @@ Within the contents of this report, the implementation of model-based reinforcem
 \subsection*{Keywords:}
 Quadruped Robots, Soft Robotics, Optimal Gait Control, Model-Based Reinforcement Learning(MBRL)
 
-\titleformat
-{\chapter} % command
-[display] % shape
-{\normalfont\huge\bfseries} % format
-{\hfill \thechapter} % label
-{-2ex} % sep
-{
-    \vspace{-1.2em}
-    \input{tables/Abs_sv}
-    \vspace{-1em}
-    % \noindent
-    \makebox[0pt][l]{\rule[.6ex]{\linewidth}{2.5pt}}%
-    \rule[.3ex]{\linewidth}{.6pt}
-    % \vspace{-0.5ex}
-} % before-code
-[
-\vspace{-2ex}%
-\rule{\textwidth}{.6pt}
-] % after-code
-
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%	 The Swedish abstract         %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Sammanfattning}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Fyrbenta robotar har fördelen att kunna manövrera i komplex terräng utan mänsklig ansträngning, och de kan till exempel ge större absorptionsförmåga så att roboten bättre kan stå emot stötar och slag. Även om stela robotar är kända för sin snabba respons och exakta rörelser, kan de vara begränsade i sitt rörelseområde på grund av sina stela mekaniska strukturer, som leder och hydrauliska ställdon. På senare tid har utvecklingen av sensorer, ställdon och datorer gjort det lättare att styra mjuka fyrbenta robotar i verkliga livet, vilket gör det möjligt att utforska styrstrategier för ökad anpassningsförmåga och effektivitet i olika terränger och miljöer. Samtidigt underlättar användningen av förstärkningsinlärning för styrning av robotteknik uppnåendet av autonoma och anpassningsbara robotbeteenden, där robotar lär sig att agera genom interaktioner med sina miljöer för att optimera prestanda. 
-
-Trots framstegen inom styrning av fyrbenta robotar kräver integrering av avancerade styrmetoder som förstärkningsinlärning omfattande utbildning och robusthetsöverväganden för att säkerställa säker funktionalitet i den verkliga världen. Att anpassa effektiva simuleringsbaserade styrtekniker till konkreta robotar stöter på utmaningar som härrör från skillnaden mellan simulerade och verkliga miljöer, vilket kräver förbättrade metoder för förstärkningsinlärning. Denna avhandling strävar efter att bidra väsentligt till att öka robotförmågan genom att använda en optimal gångkontroll av mjuka fyrhjuliga robotar genom modellbaserad förstärkningsinlärning. Genom att ta itu med de utmaningar som är kopplade till den verkliga implementeringskomplexiteten och förfina kontrollstrukturer, syftar den till att bana en transformativ väg för den harmoniska sammanslagningen av förstärkningsinlärning i den mjuka fyrhjuliga robotdomänen, vilket förbättrar prestanda, anpassningsförmåga och autonomi.
-
-Inom innehållet i denna rapport ingår implementeringen av modellbaserade tekniker för förstärkningsinlärning för att optimera gångkontrollen, med en detaljerad beskrivning av simuleringsinställningen, belöningsstrukturen och policyförfiningsprocessen. I kapitel \ref{chap5} ges en omfattande presentation av resultaten, tillsammans med en djupgående analys som validerar effektiviteten hos de föreslagna metoderna. Analysen visar på betydande förbättringar av träningseffektiviteten och det autonoma beteendet, vilket i slutändan bekräftar att de föreslagna metoderna är effektiva.
-
-\subsection*{Nyckelord}
-Fyrhjuliga robotar, mjuk robotteknik, adaptiv gångkontroll, modellbaserad förstärkningsinlärning
 
 \titleformat
 {\chapter} % command
@@ -121,9 +123,7 @@ Fyrhjuliga robotar, mjuk robotteknik, adaptiv gångkontroll, modellbaserad förs
 \chapter*{Acknowledgements}
 I am deeply grateful for the opportunity to complete this Master's Thesis and would like to acknowledge the support and guidance of several individuals who have contributed to the successful completion of this project.
 
-First and foremost, I would like to extend my sincere thanks to the Mechatronics Department of Machine Design at KTH for their unwavering support throughout the duration of this project. I am particularly indebted to my academic supervisor, Mr. Tan Kaige, for his guidance and unwavering commitment to keeping me on track. Moreover, I would like to express my deep appreciation to the examiner, Prof. Lei Feng, for his interest in my work and for his valuable consultation. Dr. Fredrik Asplund deserves my gratitude for his invaluable guidance and advice regarding the research methodology, which helped shape the initial direction of this thesis work.
-
-In addition, I would like to recognize the contribution of ChatGPT, the language model developed by OpenAI, for its assistance in refining certain written content included in this thesis.
+First and foremost, I would like to extend my sincere thanks to the Mechatronics Department of Machine Design at KTH for their unwavering support throughout the duration of this project. I am particularly indebted to my academic supervisor, Mr. Tan Kaige, for his guidance and unwavering commitment to keeping me on track. Moreover, I would like to express my deep appreciation to the examiner, Prof. Lei Feng, for his interest in my work and for his valuable consultation. Dr. Fredrik Asplund deserves my gratitude for his invaluable guidance and advice regarding the research methodology, which helped shape the initial direction of this thesis work. I would also like to express my gratitude to my parents for their unwavering support throughout my academic journey. In addition, I would like to recognize the contribution of ChatGPT, the language model developed by OpenAI, for its assistance in refining certain written content included in this thesis.
 
 Lastly, I must acknowledge myself, as I am also proud of the dedication, perseverance, and hard work I have put into completing this Master's Thesis.
 
