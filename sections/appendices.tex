@@ -61,7 +61,21 @@ Leveraging the Kalman gain, the state estimate and its covariance are updated as
 x_{k|k} = x_{k|k-1} + K_k \cdot (z_k - H \cdot x_{k|k-1}) \
 P_{k|k} = (I - K_k \cdot H) \cdot P_{k|k-1}
 \end{align*}
-In these equations, $I$ denotes the identity matrix. The Kalman filter's iterative process continually refines the state estimate and its associated uncertainty, making it a powerful tool for state estimation in the presence of noise and uncertainty..
+In these equations, $I$ denotes the identity matrix. The Kalman filter's iterative process continually refines the state estimate and its associated uncertainty, making it a powerful tool for state estimation in the presence of noise and uncertainty.
+
+\section{ANCOVA}
+\label{Sec:ANCOVA}
+ANCOVA is a powerful statistical tool that allows us to rigorously assess the impact of our independent variables while controlling for covariates.  In our case, the covariate of interest is the reference walking speed ($v_{ref}$), which could potentially influence the dependent variables. The \ac{DoF}  represent the number of values in the final calculation of a statistic that are free to vary, and Sum of Squares(Sum Sq) quantifies the variability in our data and helps us understand the contribution of different factors to that variability. Mean square is the average of the sum of squares values. It's a key statistic in ANCOVA, as it allows us to compare the variation explained by the model to the unexplained variation (error). We calculate Mean Square Model (MSM) and Mean Square Error (MSE). The F-statistic is a crucial test statistic in ANCOVA. It quantifies the ratio of the variation explained by the model (MSM) to the unexplained variation (MSE). The F-statistic is used to determine whether the independent variable (in our case, the RL method: MBRL or MFRL) has a significant effect on the dependent variables. Probability (p) values associated with the F-statistic indicate the likelihood of observing such a statistic if the null hypothesis is true. In our case, a low p-value suggests that the RL method has a significant effect. The Pro>F value indicates the probability of obtaining an F-statistic as extreme as the one observed, given that the null hypothesis is true. Here is how does these measures calculated:
+
+\begin{itemize}
+    \item \ac{DoF}: (For the model) $\text{DoF}_{\text{Model}} = \text{Number of groups (RL methods)} - 1$, (For the error) $\text{DoF}_{\text{Error}} = \text{Total number of observations} - \text{DoF}_{\text{Model}} - 1$
+    \item Sum of Squares (Sum Sq):$\text{SST} = \sum(y_i - \bar{y})^2$, where $y_i$ is each individual data point, and $\bar{y}$ is the overall mean.
+    \item Model Sum of Squares (SSM): $\text{SSM} = \sum(n_i)(\bar{y}_i - \bar{y})^2$,  where $n_i$ is the number of observations in each group.
+    \item Error Sum of Squares (SSE): $\text{SSE} = \sum\sum(y_{ij} - \bar{y}_i)^2$, where $y_{ij}$ is each individual data point within each group.
+    \item Mean Square Model (MSM): $\text{MSM} = \frac{\text{SSM}}{\text{DoF}_{\text{Model}}}$
+    \item Mean Square Error (MSE): $\text{MSE} = \frac{\text{SSE}}{\text{DoF}_{\text{Error}}}$
+    \item F-statistic: $\text{F-statistic} = \frac{\text{MSM}}{\text{MSE}}$
+\end{itemize}
 
 \section{Single Step Prediction of two NNs}
 \begin{figure}[htb]
@@ -83,17 +97,19 @@ In these equations, $I$ denotes the identity matrix. The Kalman filter's iterati
 \chapter{Additional Showcases}
 In this chapter, the main the source code and block diagrams implemented in Simulink is provided, together with some videos of validating the trained agents. These elements play a crucial role in this thesis, enabling the replication of experiments, validation of results, and the potential for further advancements in our work.
 
-
 \section{Main Code of SoftQ}
-
+There are two main codes used for controlling and running the robot, Python code are designed for the main brain. Simulink generated C code for controller, but other than that, main code need for training MBRL and MFRL are shown.
 \subsection*{Python Code for SoftQ}
 The Python code for SoftQ can be found in here: \href{https://github.com/n7729697/KTH-MasterThesis/blob/main/code/SoftQ_optimized.py}{\faGithub\, \underline{Python Code}}
 
 \subsection*{Matlab Code for MBRL}
 \label{code:mbrl}
-The Matlab code for MBRL training can be found in here: \href{https://github.com/n7729697/KTH-MasterThesis/blob/main/code/SoftQ_optimized.py}{\faGithub\,\underline{MATLAB Code}}
+The Matlab code for MBRL training can be found in here: \href{https://github.com/n7729697/KTH-MasterThesis/blob/main/code/MBRLmain.mlx}{\faGithub\,\underline{MBRLmain Code}}
+The Matlab code for creating RL training agent can be found in here: \href{https://github.com/n7729697/KTH-MasterThesis/blob/main/code/createAgent.mlx}{\faGithub\,\underline{createAgent Code}}
 
 \section{Block Diagrams from Simulink}
+\subsection*{Block Diagrams for Collecting Stochastic Data.}
+The block diagrams for MBRL training and simulation in simulink could be found in here: \href{https://github.com/n7729697/KTH-MasterThesis/blob/main/img/AppB/ModelRobot.pdf}{\faGithub\,\underline{ Stochastic data acquisition block diagram}}
 \subsection*{Block Diagrams for MBRL}
 The block diagrams for MBRL training and simulation in simulink could be found in here: \href{https://github.com/n7729697/KTH-MasterThesis/blob/main/img/AppB/it.pdf}{\faGithub\,\underline{ MBRL training block diagram}}
 \subsection*{Block Diagrams for Continue Training and MFRL}

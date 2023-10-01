@@ -30,7 +30,7 @@ In Figure \ref{fig:NN_heat}(a), it is evident that reducing the lower restrictio
 
 In assessing single-step predictions using various expert gait pattern datasets, the correlation coefficient (R) between predictions and ground truth was calculated, as depicted in Figure \ref{fig:NN_heat}(d). The results show consistently high accuracy when either the compression length ($z_l$) or the bending angle ($\alpha_b$) is high, or when both are elevated. This observation aligns with the expectation that for the robot to achieve higher speeds, it should exhibit more pronounced behaviors, which are characterized by larger values of these parameters. Consequently, the expert gait dataset used in this context emphasizes high values of $\alpha_b$ and $z_l$, resulting in smaller differences between predictions and ground truth, and consequently, lower values of R. A similar trend is observed when considering single-step predictions. Smaller NRMSE values are associated with high values of $z_l$ and $\alpha_b$, but interestingly, low $\alpha_b$ values also yield small NRMSE values. This implys that bending angle ($\alpha_b$) exerts a more significant influence on robot locomotion. These results are visually represented in Figure \ref{fig:NN_heat}(g). However, it is important to note that neither the NRMSE nor R reach their lowest points in the highest $\alpha_b$ region, suggesting poorer predictions when too small steps are taken before simulation failure, resulting in an insufficient amount of useful data.
 
-For multi-step predictions on the same expert gait pattern datasets, the effects of $\alpha_b$ and $z_l$ are similar in single step prediction, but the models with low $\alpha_b$ values perform less effectively in predicting over longer time horizons, suggesting a lack of robust generality in these models. However, as shown in Figure \ref{fig:NN_heat}(e), the average correlation coefficient (R) for long-term predictions reveals that models with relatively high values of both $\alpha_b$ and $z_l$ struggle to predict states over extended horizons. This challenge could be attributed to the larger action space, which introduces more unpredictability and subsequently leads to reduced performance compared to models with lower $z_l$ values when trained on the same dataset size. This trend is also evident in the full horizon prediction R, as depicted in Figure \ref{fig:NN_heat}(f), where predictions at relatively high values of both $\alpha_b$ and $z_l$ deteriorate. In addition, the average NRMSE of long-term predictions exhibits a similar performance to what was observed in single-step predictions. Lower errors are associated with larger values of $\alpha_b$ and $z_l$, but NRMSE also decreases when $\alpha_b$ reaches its highest values. These results are presented in Figure \ref{fig:NN_heat}(h). Interestingly, performance remains consistent when $\alpha_b$ is smaller than 0.72 radians and $z_l$ is larger than 3 millimeters. Likewise, in the case of NRMSE for full horizon prediction, there is no significant change in performance, as indicated in Figure \ref{fig:NN_heat}(i).
+For multi-step predictions on the same expert gait pattern datasets, the effects of $\alpha_b$ and $z_l$ are similar in single step prediction, but the models with low $\alpha_b$ values perform less effectively in predicting over longer time horizons, suggesting a lack of robust generality in these models. However, as shown in Figure \ref{fig:NN_heat}(e), the average correlation coefficient (R) for long-term predictions reveals that models with relatively high values of both $\alpha_b$ and $z_l$ struggle to predict states over extended horizons. This challenge could be attributed to the larger action space, which introduces more unpredictability and subsequently leads to reduced performance compared to models with lower $z_l$ values when trained on the same dataset size. This trend is also evident in the full horizon prediction R, as depicted in Figure \ref{fig:NN_heat}(f), where predictions at relatively high values of both $\alpha_b$ and $z_l$ deteriorate. In addition, the average NRMSE of long-term predictions exhibits a similar performance to what was observed in single-step predictions, which shows different patterns compared to R results, because the NMRMSE is normalised and large values like contact forces may have more effects on the metrics. Lower errors are associated with larger values of $\alpha_b$ and $z_l$, but NRMSE also decreases when $\alpha_b$ reaches its highest values. These results are presented in Figure \ref{fig:NN_heat}(h). Interestingly, performance remains consistent when $\alpha_b$ is smaller than 0.72 radians and $z_l$ is larger than 3 millimeters. Likewise, in the case of NRMSE for full horizon prediction, there is no significant change in performance, as indicated in Figure \ref{fig:NN_heat}(i).
 
 Hence, the optimal action state restrictions can be identified as approximately $\alpha_b$ around 0.6 rad and $z_l$ around 7 mm. However, it's important to consider that these restrictions also impact MBRL training, as they limit the range of exploration within the robot's action space. Therefore, it's preferable to keep the action space as broad as possible. Another viable set of restrictions to consider is $\alpha_b$ around 0.63 rad and $z_l$ around 8 mm for the state space during surrogate model training and MBRL training. This broader range allows for more exploration and potentially better overall performance in subsequent MBRL learning.
 
@@ -50,7 +50,7 @@ Post-training validation in the simulation environment, conducted for a duration
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/chap5/MBRL_val.eps}
-    \caption{The Validation Results of MBRL. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axes; (c) Speed of the robot along the $x$, $y$, and $z$ axes; (d) Orientation of the robot along the $x$, $y$, and $z$ axes.}
+    \caption{The Validation Results of MBRL. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axis; (c) Speed of the robot along the $x$, $y$, and $z$ axis; (d) Orientation of the robot along the $x$, $y$, and $z$ axis.}
     \label{fig:MBRL_val}
 \end{figure}
 
@@ -76,7 +76,7 @@ The outcomes of validations for continue training are graphically presented in F
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/chap5/best_CL.eps}
-    \caption{The Validation Results of Continue Training. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axes; (c) Speed of the robot along the $x$, $y$, and $z$ axes; (d) Orientation of the robot along the $x$, $y$, and $z$ axes.}
+    \caption{The Validation Results of Continue Training. (a) COT of the robot while walking; (b) Distance traveled along the $x$, $y$, and $z$ axis; (c) Speed of the robot along the $x$, $y$, and $z$ axis; (d) Orientation of the robot along the $x$, $y$, and $z$ axis.}
     \label{fig:CT}
 \end{figure}
 
@@ -86,7 +86,6 @@ Figure \ref{fig:CT_gait} (a) shows the examples of the four foot trajectories, a
 
 Moreover, it's essential to highlight that the observed results go beyond demonstrating successful gait patterns and stability. They also reveal the practical significance of this achievement in terms of direction control within velocity control. As shown in Figure \ref{fig:CT} (d), in the beginning of walking, the robot initially turns to the right but subsequently corrects itself, adjusting its orientation slightly to the left by the end of the gait cycle. This phenomenon was also observed in field tests, as presented in Section \ref{video}. This capability for self-correction and precise direction control enhances the robot's suitability for applications that require controlled and accurate movement, further expanding its utility in real-world scenarios. 
 
-
 \section{Model-based RL Comparison}
 \label{Sec:MBRL}
 
@@ -95,40 +94,93 @@ In order to examine the operational capacity and investigate the gait patterns o
 \subsection{Performance Evaluation}
 In the performance evaluation of the trained agent, it is important to consider several critical metrics. These metrics serve as crucial indicators of proficiency of the agent, referred to as the controller. Here, these metrics are expounded again avoiding excessive details:
 \begin{itemize}
-    \item Stability (rad/s): This metric pertains to the maximum angular velocity exhibited by the agent along the z-axis. It provides valuable insights into the agent's ability to maintain stability during operation, a fundamental aspect of its performance. 
+    \item Stability : This metric combines information about the time duration of the gait, rotational motion, and vertical displacement to assess the stability of the gait. It provides valuable insights into the agent's ability to maintain stability during operation. 
     \item Resultant walking speed (m/s): This metric involves assessing the agent's walking speed, particularly by calculating the average speed achieved during validation. It offers a straightforward measure of the agent's mobility and effectiveness in movement.
-    \item Cost-of-transport (J/kg/m):  The cost-of-transport metric evaluates the energy efficiency of the agent. It quantifies the amount of energy expended by the agent, normalized by its weight and the distance traveled. This metric is crucial for understanding the agent's energy consumption patterns.
-    \item Learning efficiency:  Learning efficiency gauges how quickly the agent converges to an optimal or satisfactory performance level. It can be quantified by measuring the number of iterations or episodes required for the agent to reach convergence. This metric provides insights into the agent's adaptability and learning capabilities.
+    \item Cost-of-Transport (J/kg/m):  The COT metric evaluates the energy efficiency of the agent. It quantifies the amount of energy expended by the agent, normalized by its weight and the distance traveled. This metric is crucial for understanding the agent's energy consumption patterns.
+    \item Learning efficiency:  Learning efficiency gauges how quickly the agent converges to an optimal or satisfactory performance level. It is quantified by measuring the training time required for the agent to reach convergence and the reward reach a significant level. This metric provides insights into the agent's adaptability and learning capabilities.
 \end{itemize}
 
 \subsection{Compare with MFRL}
-So the chosen speed references are 0.2, 0.3, 0.5 m/s. ANCOVA analysis you conducted to compare Model-Based Reinforcement Learning (MBRL) and Model-Free Reinforcement Learning (MFRL) while controlling for the covariate desired walking speed ($v_{ref}$) with respect to the dependent variables, stability, resultant walking speed, "\ac{COT}, learning efficiency, and Long-term planning, pre-defined in Section \ref{Sec:test_def}. 
-\subsubsection*{Stability}
-The ANCOVA analysis revealed a significant difference in the stability of walking between MBRL and MFRL while controlling for the covariate $v_{ref}$, F(1, N) = [Your F-statistic], p = [Your p-value]. After accounting for the influence of $v_{ref}$, it was found that MBRL demonstrated a significantly higher stability in terms of less velocity in the y-direction and less maximum rotation angle. This suggests that the choice of RL method has a significant positive impact on the stability of walking.
-\subsubsection*{Resultant walking speed}
-The ANCOVA analysis indicated a significant difference in the resultant walking speed between MBRL and MFRL while controlling for the covariate $v_{ref}$, F(1, N) = [Your F-statistic], p = [Your p-value]. MBRL achieved a significantly higher resultant walking speed. This implies that the choice of RL method significantly affects the resultant walking speed.
-\subsubsection{Cost-of-Transport}
-An analysis of covariance (ANCOVA) was conducted to examine the impact of RL method on cost-of-transport while controlling for the covariate $v_{ref}$. The results revealed a significant difference between MBRL and MFRL, F(1, N) = [Your F-statistic], p = [Your p-value], even after adjusting for the effects of designed walking speed. Specifically, MBRL exhibited significantly higher \ac{COT}. This suggests that the choice of RL method has a significant positive influence on the energy efficiency of walking.
-\subsubsection{Learning efficiency}
-The ANCOVA analysis for learning efficiency, with $v_{ref}$ as a covariate, yielded significant results, F(1, N) = [Your F-statistic], p = [Your p-value]. When controlling for $v_{ref}$, MBRL demonstrated significantly faster learning efficiency, as measured by the number of iterations required to converge. This indicates that the choice of RL method significantly affects the efficiency of learning in the context of MBRL for optimal gait control of soft quadruped robot.
-\subsubsection*{Long-term planning}
-The ANCOVA analysis conducted for long-term planning, while controlling for $v_{ref}$, provided noteworthy results, F(1, N) = [Your F-statistic], p = [Your p-value]. After adjusting for the effects of the covariate $v_{ref}$, MBRL demonstrated significantly greater long-term planning abilities, as evidenced by cumulative reward. This suggests that the choice of RL method significantly impacts long-term planning in robustness of optimal gait control of soft quadruped robot. 
+This section will delve into the performance comparison between the MBRL with continue training and MFRL based metrics outlined earlier. To ensure a robust evaluation, three identical training sessions were conducted for each reference velocity $v_{ref}$, which took values of 0.2 m/s, 0.3 m/s, and 0.5 m/s. Training was stopped upon the convergence of each policy to a significant reward level. Following the training phase, each trained agent was implemented and evaluated through simulation of 5s. The results of these evaluations are visually represented in Figure \ref{fig:box}. It is evident from the figure that MBRL with continuous training consistently outperforms MFRL. This conclusion is drawn based on the observation that the mean values of key performance metrics, including stability, resultant walking speed, COT, and training time, are consistently higher for MBRL with continuous training compared to MFRL.
 
-\input{tables/rq2test}
-
-\subsection{Compare with Expert Gait}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/chap5/vsexpert.eps}
-    \caption{The Validation Results of MBRL. (a) Cumulative reward in MBRL vs the training episodes; (b) The variation of entropy and temperature coefficients during the training process.}
-    \label{fig:vsExp}
+    \includegraphics[width=\linewidth]{img/chap5/box_results.eps}
+    \caption{The Box Plot of MBRL with Continue Training compared to MFRL. (a) Box plot of stability by method; (b) Box plot of resultant walking speed by method ; (c) Box plot of COT by method; (d) Box plot of simulation time by method.}
+    \label{fig:box}
 \end{figure}
 
+However, it is essential to acknowledge that reference walking speed ($v_{ref}$) represents a covariate in this comparative analysis. To ensure a rigorous assessment that accounts for the potential influence of this covariate, an \ac{ANCOVA} was conducted to compare MBRL with continue learning and MFRL. This statistical analysis enabled us to compare these two RL approaches while effectively controlling for the covariate $v_{ref}$. This analysis primarily focused on the following dependent variables, as previously defined in Section \ref{Sec:test_def}: stability, resultant walking speed, COT and learning efficiency. This ANCOVA analysis provides a robust framework for evaluating the relative performance of the two RL approaches, while considering the potential impact of reference walking speed ($v_{ref}$). The results of this analysis offer deeper insights into the effectiveness of each method in achieving stable and efficient gait control for our soft robot. The details of ANCOVA is discussed in \ref{Sec:ANCOVA}.
+
+The hypothesis holds that MBRL with continue training is significantly more effective and efficient in achieving stable and efficient gait control for our soft robot SoftQ compared to MFRL, across various reference velocities ($v_{ref}$).
+
+\subsubsection*{Stability}
+The ANCOVA analysis revealed both the method of RL (MBRL or MFRL) and the covariate $v_{ref}$ have a statistically significant effect on walking stability. The F-value of 5.9902 and the p-value of 0.0307 in the effect of method indicate that the method of RL significantly influences walking stability. Given that the p-value is less than 0.05, this effect is statistically significant, suggesting that one of these methods is likely better than the other in terms of enhancing walking stability. $v_{ref}$ serves as a covariate in this study, and it too shows a statistically significant F-value of 4.3583 and a p-value of 0.0378. This implies that $v_{ref}$ independently impacts walking stability, and its effect is statistically significant. The interaction between the method and $v_{ref}$ is also significant, with an F-value of 5.4802 and a p-value of 0.0204. This suggests that the effect of the learning method on walking stability is not consistent across all levels of $v_{ref}$. In other words, the optimal choice between MBRL and MFRL may depend on the specific value of $v_{ref}$. This suggests that the  RL approaches has a significant positive impact on the stability of walking.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc} 
+         Source&  DoF&  Sum Sq&  Mean Sq&  F& Prob>F\\ \hline
+         $v_{ref}$&  2&  0.4734&  0.2367&  4.3583& 0.0378\\ 
+         Method&  1&  0.3254&  0.3254&  5.9902& 0.0307\\ 
+         $v_{ref}\cdot$Method&  2&  0.5953&  0.2977&  5.4802& 0.0204\\ 
+         Error&  12&  0.6518&  0.0543&  & \\ 
+    \end{tabular}
+    \caption{ANCOVA test of stability metrics.}
+    \label{tab:ANCOVA_sta}
+\end{table}
+
+\subsubsection*{Resultant walking speed}
+The ANCOVA analysis concluded that the method of RL significantly impacts resultant walking speed, while $v_{ref}$ does not. The DoF for $v_{ref}$ is 2, and it has a Sum of Squares (Sum Sq) of 0.0056, yielding a Mean Square (Mean Sq) of 0.0028. The F-value is a low 0.2133, and the p-value is notably high at 0.8109. These metrics strongly suggest that $v_{ref}$ does not have a statistically significant impact on the resultant walking speed in this case. The Method has a DoF of 1 with a Sum Sq of 0.1390, resulting in a Mean Sq of 0.1390. The F-value is considerably high at 10.6660, and the p-value is 0.0068, well below the 0.05 threshold. These values point to a statistically significant influence of the RL method on resultant walking speed. This implies that either MBRL or MFRL has a substantial impact on walking speed, warranting further investigation to determine the most effective approach. The interaction term shows a DoF of 2, a Sum Sq of 0.0991, and a Mean Sq of approximately 0.0496. With an F-value of 3.8011 and a p-value of 0.0526, the interaction term is borderline significant. This indicates that the effect of the RL method on resultant walking speed may vary depending on $v_{ref}$, although the evidence is not strong enough to make this conclusion definitively.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc} 
+         Source&  DoF&  Sum Sq&  Mean Sq&  F& Prob>F\\ \hline
+         $v_{ref}$&  2&  0.0056&  0.0028&  0.2133& 0.8109\\ 
+         Method&  1&  0.1390&  0.1390&  10.6660& 0.0068\\ 
+         $v_{ref}\cdot$Method&  2&  0.0991&  0.0496&  3.8011& 0.0526\\ 
+         Error&  12&  0.1564&  0.0130&  & \\ 
+    \end{tabular}
+    \caption{ANCOVA test of resultant walking speed.}
+    \label{tab:ANCOVA_v}
+\end{table}
+
+\subsubsection{Cost-of-Transport}
+The data indicates that the choice of RL method (MBRL or MFRL) has a statistically significant impact on COT. On the other hand, the influence of $v_{ref}$ is borderline significant, and the interaction term between $v_{ref}$ and method of RL is not statistically significant. In effect of $v_{ref}$, the F-value stands at 3.7479 with a p-value of 0.0544. While the F-value suggests a reasonable effect, the p-value marginally exceeds the typical 0.05 significance threshold, making the influence of $v_{ref}$ on COT statistically borderline. In effect of RL method, the F-value is 5.5947 with a p-value of 0.0357. Given the p-value is less than 0.05, the influence of the chosen RL method on COT is statistically significant. In the effect of interaction term ($v_{ref}\cdot$Method), the F-value is 2.9587, and the p-value is 0.0902. Although the F-value suggests some degree of effect, the p-value is greater than 0.05, suggesting that the interaction effect is not statistically significant. Therefore, while the RL method appears to be a crucial factor affecting COT, the role of $v_{ref}$ and its interaction with the method may require additional research to be conclusively understood.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc} 
+         Source&  DoF&  Sum Sq&  Mean Sq&  F& Prob>F\\ \hline
+         $v_{ref}$&  2&  \num{9.5553e5}&  \num{4.7776e5}&  3.7479& 0.0544\\ 
+         Method&  1&  \num{7.1318e5}&  \num{7.1318e5}&  5.5947& 0.0357\\ 
+         $v_{ref}\cdot$Method&  2&  \num{7.5432e5}&  \num{3.7716e5}&  2.9587& 0.0902\\ 
+         Error&  12&  \num{1.5297e6}&  \num{1.747e5}&  & \\ 
+    \end{tabular}
+    \caption{ANCOVA test of COT.}
+    \label{tab:ANCOVA_COT}
+\end{table}
+
+\subsubsection{Learning efficiency}
+The ANCOVA analysis underscores the statistical significance of the RL method in influencing learning efficiency. The $v_{ref}$ term as a covariate,  is characterized by a Degrees of Freedom (DoF) of 2, Sum of Squares (Sum Sq) of 208.0905, and Mean Square (Mean Sq) of 104.0452. The F-value is 1.2107 and the p-value is 0.3319. Given the p-value is well above the common 0.05 significance threshold, $v_{ref}$ does not appear to have a statistically significant impact on learning efficiency. The Method term has a DoF of 1, a Sum Sq of \num{1.1997e3}, and a Mean Sq of \num{1.1997e3}. The F-value is remarkably high at 13.9597, and the p-value is notably low at 0.0028. These values confirm that the Method is statistically significant in affecting learning efficiency, suggesting a noteworthy influence of the chosen RL approach. The interaction term has a DoF of 2, a Sum Sq of 265.9588, and a Mean Sq of 132.9794. The F-value is 1.5473, and the p-value is 0.2524. These numbers indicate that the interaction term does not meet the threshold for statistical significance, which implies that the effect of the RL method on learning efficiency is generally consistent across different $v_{ref}$ levels. 
+ 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc} 
+         Source&  DoF&  Sum Sq&  Mean Sq&  F& Prob>F\\ \hline
+         $v_{ref}$&  2&  208.0905&  104.0452&  1.2107& 0.3319\\ 
+         Method&  1&  \num{1.1997e3}&  \num{1.1997e3}&  13.9597& 0.0028\\ 
+         $v_{ref}\cdot$Method&  2&  265.9588&  132.9794&  1.5473& 0.2524\\ 
+         Error&  12&  \num{1.0313e3}&  85.9405&  & \\ 
+    \end{tabular}
+    \caption{ANCOVA test of learning efficiency.}
+    \label{tab:ANCOVA_time}
+\end{table}
 
 \section{Field Test}
 The culmination of the MBRL and continue training efforts is the deployment of the trained controller onto the physical SoftQ robot. This section presents the results of the field tests, providing insights into the controller's transferability, generalization capabilities, and its performance in real-world scenarios.
 
-The primary objective of the field tests is to assess the extent to which the controller's learned motor skills can be transferred from the simulated environment to the physical robot. The results demonstrate the remarkable transferability and generalization capabilities of the trained controller. Despite the disparities between the simulation and the real world, the controller seamlessly applies the acquired behaviors in tangible, real-world settings. 
+The primary objective of the field tests is to assess the extent to which the controller's learned motor skills can be transferred from the simulated environment to the physical robot. The results demonstrate the remarkable transferability and generalization capabilities of the trained controller. Despite the disparities between the simulation and the real world, the controller seamlessly applies the acquired behaviors in tangible, real-world settings.
+
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/chap5/real_vx.eps}
