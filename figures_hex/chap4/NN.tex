@@ -14,7 +14,7 @@
 
 \begin{figure}[ht]
 \centering
-    \begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth, auto]
+    \begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth, auto, scale=0.8]
     
         \foreach \m/\l [count=\y] in {1,2,missing,3}
           \node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2-\y*.75) {};
@@ -45,7 +45,7 @@
           \foreach \j in {1,...,2}
             \draw [->] (hidden3-\i) -- (output-\j);
         \foreach \l [count=\x from 0] in {\small Input \\\small Layer\\(14) ,\small Hidden \\\small Layer 1\\(64), \small Hidden \\\small Layer 2\\(128), \small Hidden \\\small Layer 3\\(64), \small Output \\\small Layer\\(10)}
-          \node [align=center, below, yshift=-5.5cm] at (\x*2,2) {\l};
+          \node [align=center, below, yshift=-4.5cm] at (\x*2,2) {\l};
     \end{tikzpicture}
     \caption{DNN Architecture. This diagram depicts a DNN structure characterized by three hidden layers. The initial layer comprised the input data, also followed by a fully connected layer featuring 64 neurons. Subsequently, a second fully connected layer with 128 neurons establishes connections, followed by another fully connected layer with 64 neurons. It's worth highlighting that each of these fully connected layers is ignited by a Rectified Linear Unit (ReLU) function, which adds non-linearity to the network's computations. }
     \label{fig:NN}

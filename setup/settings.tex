@@ -35,6 +35,7 @@
 \usepackage[a4paper, margin=2.5625cm]{geometry}
 \usepackage{eso-pic}					% Packages for layout and graphics 
 \usepackage{graphicx}
+\usepackage{svg}                        % for svg include
 \usepackage{tikz}
 \usetikzlibrary{fadings}
 \usepackage{setspace}
@@ -82,6 +83,7 @@
 % \usepackage{glossaries}             % For glossarries
 \usepackage{xeCJK}                  % For Chinese
 % \usepackage{xpatch}                 % provides commands for patching existing commands or environments.
+% \usepackage{transparent}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 % \usepackage{listings}              % To include the code
@@ -118,6 +120,10 @@
 %   {\normalfont\sffamily\Large\bfseries}
 %   {\thesection}{1em}{}
 
+% Define \faBilibili command
+\newcommand{\faBilibili}{%
+  \includesvg[width=1em]{setup/img/bilibili.svg}% Adjust the width as needed
+}
 
 % Remove the title and make sure that the text is adjusted
 % \usepackage{abstract}
