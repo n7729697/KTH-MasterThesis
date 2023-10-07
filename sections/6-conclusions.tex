@@ -27,7 +27,18 @@ Additionally, our research has brought to light the importance of carefully cons
 
 One noteworthy aspect of our approach lies in its adaptability, allowing for the customization of the controller's behavior to suit various task objectives by manipulating distinct reward functions within the reinforcement learning framework. As the reinforcement learning algorithm learns to optimize the controller for different tasks based on specific reward functions, this adaptability renders our methodology versatile and applicable to a wide range of scenarios. Consequently, the robotic system can acquire a diverse set of task-specific skills, enhancing its overall versatility and capability.
 
-\section{Conclusion}
+\section{Conclusions}
+\subsection{Key Findings}
+In this research, a multi-faceted approach was employed to address the challenges in soft quadruped robotic control, leveraging the potential of reinforcement learning techniques. The key findings are summarized as follows:
+\begin{itemize}
+    \item \textbf{Optimal Control Strategies}: The study focused on enhancing the control mechanisms of soft quadruped robots. By leveraging model-based reinforcement learning, the research made strides in achieving real-time applicability of learned control strategies.
+    \item \textbf{Training and Robustness}: The research highlighted that employing reinforcement learning in real-world scenarios requires meticulous attention to training and robustness. The developed methodologies were designed to bridge the gap between simulated and actual environments.
+    \item \textbf{Efficiency Gains}: The implemented algorithms showed a notable improvement in training efficiency and autonomous behavior of the soft quadruped robots. This underscores the efficacy of the methodologies undertaken in the study.
+    \item \textbf{Surrogate Model Architecture}: The research emphasized the critical role played by selecting an appropriate deep neural network architecture for the task at hand. This selection was essential in optimizing the control strategies effectively.
+\end{itemize}
+Overall, the study contributes to advancing the field of robotics by addressing challenges such as time efficiency and dimensionality. It showcases the feasibility of applying advanced machine learning techniques to practical robotic control issues.
+
+\subsection{Conclusion}
 In conclusion, this thesis embarked on an exploration of enhancing learning efficiency in the context of optimal gait control for soft quadruped robots, with a primary emphasis on addressing the challenges through a MBRL approach. The overall objective was to develop robust gait control policies capable of accommodating the continuous and deformable morphology of the robot while contributing to the advancement of RL control strategies for real-world applications. To substantiate the theoretical framework and proposed methodologies, a series of experimental tests were conducted, ensuring the practical applicability of the research findings. Additionally, a tailored software architecture designed specifically for the soft quadruped robot, SoftQ, was introduced to facilitate the research's objectives.
 
 Nonetheless, it is imperative to acknowledge certain limitations and delimitation that influenced the thesis's scope. The "sim-to-real gap" constraint underscored the challenges associated with translating simulation results to real-world scenarios, reinforcing the need for a practical evaluation of the proposed gait control strategies. Moreover, the interconnected nature of the robot's legs imposed constraints on the variety of gaits that could be studied, limiting the exploration of certain locomotion strategies relevant to real-world contexts. These limitations necessitated an evaluation focused on the practical impact of controllers on the robot's stability, walking speed, and cost-of-transport, rather than delving into algorithm intricacies.
