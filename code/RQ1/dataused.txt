@@ -1,0 +1,14 @@
+Number of sequence chosen 29 and sum 1387
+Number of sequence chosen 100 and sum 4341
+Number of sequence chosen 130 and sum 6459
+Number of sequence chosen 160 and sum 7223
+Number of sequence chosen 180 and sum 7687
+Number of sequence chosen 220 and sum 9681
+Number of sequence chosen 286 and sum 13030
+Number of sequence chosen 300 and sum 13072
+Number of sequence chosen 3000 and sum 132735
+Number of sequence chosen 2860 and sum 125019
+Number of sequence chosen 7151 and sum 313858
+Number of sequence chosen 14302 and sum 618370
+Number of sequence chosen 21452 and sum 931772
+Number of sequence 28603 and sum 1248668
