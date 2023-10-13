@@ -1,3 +1,16 @@
+"""
+Author: NIU Xuezhi
+Contributors: Tan Kaige
+Organization: KTH Royal Institute of Technology, Mechatronics and Embedded Control Systems Unit
+Date: 2023 Oct 13
+
+Description:
+The file is the interfact of SoftQ robot, reading from different sensors and communicate with STM32 for robot control. 
+
+This code is based on an original work by Fu shuo and has been modified and extended by NIU Xuezhi for optimal gait control of SoftQ.
+
+"""
+
 import pygame  # A library for handling joystick input.
 import socket  # Provides networking functionality for UDP communication.
 import struct  # Allows for the packing and unpacking of binary data.
@@ -589,11 +602,6 @@ class SoftQ:
         self.sock2 = None
         self.joystick = None
 
-# Author/Contributor Information:
-# - Author: NIU Xuezhi
-# - Contribution: Tan Kaige
-# - Organization: Mechatronics and Embedded Control Systems Unit, KTH Royal Institute of Technology
-# - Date: 2023.Oct.10
 if __name__ == '__main__':
     robot=SoftQ(True)
     robot.start() 
