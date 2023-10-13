@@ -1,3 +1,21 @@
+"""
+Author: NIU Xuezhi
+Contributors: Tan Kaige
+Organization: KTH Royal Institute of Technology, Mechatronics and Embedded Control Systems Unit
+Date: 2023 Oct 13
+
+Description:
+The code is designed to control a robotic system equipped with various sensors, 
+including Time-of-Flight (ToF) sensors and an Inertial Measurement Unit (IMU). 
+It establishes communication with a remote device, such as Simulink, via UDP, 
+enabling the transmission of sensor data and control commands. Additionally, 
+the code can interface with a joystick for manual control if enabled. 
+It incorporates functionality for sensor data collection, data processing, 
+and control command execution, making it suitable for robotics research and experimentation.
+
+This code is based on an original work by Fu Shuo and has been modified and extended by NIU Xuezhi for Optimal Gait Control of SoftQ.
+"""
+
 import pygame  # A library for handling joystick input.
 import socket  # Provides networking functionality for UDP communication.
 import struct  # Allows for the packing and unpacking of binary data.
