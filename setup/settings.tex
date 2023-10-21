@@ -124,6 +124,13 @@
   \includesvg[width=1em]{setup/img/bilibili.svg}% Adjust the width as needed
 }
 
+% First letter upcase
+\usepackage{lettrine}
+\newcommand{\initial}[1]{%
+	\lettrine[lines=3,lhang=0.3,nindent=0em]{
+		\color{gray}
+     		{\textsc{#1}}}{}}
+
 % Remove the title and make sure that the text is adjusted
 % \usepackage{abstract}
 % \setlength{\absleftindent}{0mm}
