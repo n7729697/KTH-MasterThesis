@@ -39,3 +39,17 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 For any inquiries or feedback regarding the thesis or repository, please contact NIU Xuezhi at n7729697@gmail.com.
+
+## Citation
+
+If you use this code or find the idea useful, please consider citing our work:
+```
+@inproceedings{Niu_Optimal_Gait_Control_2025,
+  author = {Niu, Xuezhi and Kaige, Tan and Broo, Didem Gürdür and Lei, Feng},
+  publisher = {IEEE},
+  series = {2025 IEEE International Conference on Robotics and Automation (ICRA)},
+  title = {{Optimal Gait Control for a Tendon-driven Soft Quadruped Robot by Model-based Reinforcement Learning}},
+  year = {2025}
+}
+```
+![GrinDog](figures_hex/Grining.gif)
